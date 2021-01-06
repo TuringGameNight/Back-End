@@ -10,10 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_06_214355) do
+ActiveRecord::Schema.define(version: 2021_01_06_220318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "friends", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friends_on_friend_id"
+    t.index ["user_id"], name: "index_friends_on_user_id"
+  end
+
+  create_table "game_nights", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.string "date"
+    t.integer "number_of_games"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_game_nights_on_user_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.string "description"
+    t.string "age_range"
+    t.integer "duration"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "game_night_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_night_id"], name: "index_invitations_on_game_night_id"
+    t.index ["user_id"], name: "index_invitations_on_user_id"
+  end
+
+  create_table "user_games", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_user_games_on_game_id"
+    t.index ["user_id"], name: "index_user_games_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "google_id"
@@ -26,4 +75,10 @@ ActiveRecord::Schema.define(version: 2021_01_06_214355) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "friends", "users"
+  add_foreign_key "game_nights", "users"
+  add_foreign_key "invitations", "game_nights"
+  add_foreign_key "invitations", "users"
+  add_foreign_key "user_games", "games"
+  add_foreign_key "user_games", "users"
 end
