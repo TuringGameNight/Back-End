@@ -22,4 +22,13 @@ describe 'Friends endpoint', type: :request do
       expect(friend[:attributes][:email]).to be_a(String)
     end
   end
+
+  it 'cannot return friends if there are none' do
+    user_1 = create(:user)
+    get api_v1_user_friends_path(user_1.id)
+    expect(response).to be_successful
+
+    friends = JSON.parse(response.body, symbolize_names: true)[:data]
+    expect(friends).to eq([]) 
+  end
 end
