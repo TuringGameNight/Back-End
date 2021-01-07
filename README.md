@@ -1,4 +1,4 @@
-# README
+# Game Night API
 
 [![Build Status](https://travis-ci.com/TuringGameNight/Back-End.svg?branch=main)](https://travis-ci.com/TuringGameNight/Back-End)
 
@@ -23,4 +23,6 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+## Endpoints:
+- users/:id/friends -> Returns a list of friends names and email addresses
+> ^ Needs screenshot from postman
