@@ -1,4 +1,4 @@
-class Api::V1::Users::GamesController < ApplicationController
+class Api::V1::GamesController < ApplicationController
 
   def create
   game = Game.create(create_game_params)
