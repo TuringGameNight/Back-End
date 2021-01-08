@@ -4,7 +4,7 @@ describe 'Add game endpoint', type: :request do
   it 'Allows user to add a game not discovered by the API' do
     user_1 = create(:user)
 
-    post api_v1_user_games_path(user_1.id), params: {name: 'DnD',
+    post api_v1_games_path(user_1.id), params: {name: 'DnD',
                                                      game_type: "Dice",
                                                      num_players: "4-8",
                                                      description: "Fun times!",
@@ -15,7 +15,7 @@ describe 'Add game endpoint', type: :request do
 
     expect(Game.last.name).to eq('DnD')
 
-    post api_v1_user_games_path(user_1.id), params: {name: 'Catan',
+    post api_v1_games_path(user_1.id), params: {name: 'Catan',
                                                      game_type: "Board",
                                                      num_players: "4-8",
                                                      description: "Fun times!",

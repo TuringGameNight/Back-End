@@ -4,9 +4,13 @@ Rails.application.routes.draw do
   # Friends
   namespace :api do
     namespace :v1 do
+
       resources :users do
         get :friends, to: 'users/friends#index'
-        post :games, to: 'users/games#create'
+      end
+
+      resources :games do
+        post :games, to: 'games/games#create'
       end
     end
   end
