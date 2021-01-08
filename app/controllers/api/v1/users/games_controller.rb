@@ -2,6 +2,7 @@ class Api::V1::Users::GamesController < ApplicationController
 
   def create
   game = Game.create(create_game_params)
+  render json: GamesSerializer.new(game)
   end
 
   private
