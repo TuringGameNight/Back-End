@@ -10,8 +10,8 @@ describe 'Add game endpoint', type: :request do
                                                      description: "Fun times!",
                                                      age_range: "10",
                                                      duration: 2,
-                                                     image: "N/A",
-                                                     user_id: user_1.id}
+                                                     image: "N/A"}
+
 
     expect(Game.last.name).to eq('DnD')
 
@@ -21,8 +21,8 @@ describe 'Add game endpoint', type: :request do
                                                      description: "Fun times!",
                                                      age_range: "10",
                                                      duration: 2,
-                                                     image: "N/A",
-                                                     user_id: user_1.id}
+                                                     image: "N/A"
+                                                     }
     expect(Game.last.name).to eq('Catan')
   end
 end
