@@ -14,7 +14,6 @@ describe User, type: :model do
     it { should have_many :game_nights }
     it { should have_many :friends}
     it { should have_many(:buds).through :friends}
-    it { should have_many :games}
     it { should have_many :invitations}
   end
 end
