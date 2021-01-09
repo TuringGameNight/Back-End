@@ -8,7 +8,8 @@ class User < ApplicationRecord
   has_many :invitations
   has_many :friends, dependent: :destroy
   has_many :buds, through: :friends
-  has_many :games
+  has_many :user_games
+  has_many :games, through: :user_games
 
   def self.find_or_update(user_data)
     user = User.find_by(email: user_data[:user_data][:info][:email]) || User.create!(
