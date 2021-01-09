@@ -2,14 +2,29 @@ require 'rails_helper'
 
 RSpec.describe 'Create User' do
   it "can create a new user" do
-    user_request_info = File.read('spec/fixtures/user_oauth_data.rb')
-    headers = {'CONTENT_TYPE' => 'application/json'}
-    
-    post '/api/v1/users', params: user_request_info
+    user = create(:user)
+    user_params = {:client_id=>user.id,
+                   :user_data=>
+                      {:info=>
+                        {:name=>user.name,
+                        :email=>user.email,
+                        :image=>user.image
+                        },
+                      :credentials=>
+                        {:token=>user.google_token,
+                        :refresh_token=>user.refresh_token
+                        },
+                      :extra=>
+                        {:id_token=>user.auth_token
+                        }
+                      }
+                  }
+    headers = { 'CONTENT_TYPE' => 'application/json' }
+
+    post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
     created_user = User.last
-
-    expect(response).to be_successful
-    expect(created_user.name).to eq(user_request_info[:user_data][:info][:name])
+    user = JSON.parse(response.body, symbolize_names: true)
+    expect(response.status).to eq(200)
+    user_response_checker(user, User.last)
   end
-
 end
