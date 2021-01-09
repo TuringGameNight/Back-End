@@ -39,6 +39,7 @@ describe 'searches for a game before hitting the API', type: :request do
     random_game = "War"
 
     get api_v1_games_find_path(random_game)
-    
+
+    expect(response.status).to eq(204)
   end
 end
