@@ -7,7 +7,6 @@ describe User, type: :model do
     it { should validate_presence_of :name }
     it { should validate_presence_of :google_id }
     it { should validate_presence_of :google_token }
-    it { should validate_presence_of :refresh_token }
     it { should validate_presence_of :auth_token }
   end
 
