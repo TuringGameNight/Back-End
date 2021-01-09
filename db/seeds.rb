@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
 Friend.destroy_all
+Game.destroy_all
 
 kate = User.create(name:"Kate",
             google_id: "lkawe4ljkn230asd",
@@ -34,3 +35,11 @@ phil = User.create(name:"Phil",
 
 Friend.create(user_id:kate.id, bud_id:austin.id)
 Friend.create(user_id:kate.id, bud_id:phil.id)
+
+chess = Game.create(name: 'Chess',
+                     game_type: 'Board/Strategy',
+                     description: 'Timeless',
+                     duration: 15,
+                     image: 'Knight',
+                     num_players: "2",
+                     age_range: 6)
