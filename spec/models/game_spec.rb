@@ -9,4 +9,13 @@ describe Game, type: :model do
     it { should validate_presence_of :duration}
     it { should validate_presence_of :num_players }
   end
+
+  describe 'class methods' do
+    it '.find_game_db()' do
+      game = create(:game, name: 'Everdell')
+
+      expect(Game.find_game_db('Everdell')).to eq([game])
+      expect(Game.find_game_db('Pandemic')).to eq([])
+    end
+  end
 end
