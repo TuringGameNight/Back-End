@@ -22,7 +22,7 @@ RSpec.describe 'Create User' do
     headers = { 'CONTENT_TYPE' => 'application/json' }
 
     post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
-    created_user = User.last
+
     user = JSON.parse(response.body, symbolize_names: true)
     expect(response.status).to eq(200)
     user_response_checker(user, User.last)
