@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
       # Games lookup
       namespace :games do
-        get '/find', to: 'find#show'
+        get '/find', to: 'find#index'
       end
 
       # User crud
