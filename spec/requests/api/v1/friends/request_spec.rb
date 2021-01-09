@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'Friends endpoint', type: :request do
@@ -5,8 +7,8 @@ describe 'Friends endpoint', type: :request do
     user_1 = create(:user)
     user_2 = create(:user)
     user_3 = create(:user)
-    Friend.create(user_id:user_1.id, bud_id:user_2.id)
-    Friend.create(user_id:user_1.id, bud_id:user_3.id)
+    Friend.create(user_id: user_1.id, bud_id: user_2.id)
+    Friend.create(user_id: user_1.id, bud_id: user_3.id)
 
     get api_v1_user_friends_path(user_1.id)
 
@@ -29,6 +31,6 @@ describe 'Friends endpoint', type: :request do
     expect(response).to be_successful
 
     friends = JSON.parse(response.body, symbolize_names: true)[:data]
-    expect(friends).to eq([]) 
+    expect(friends).to eq([])
   end
 end

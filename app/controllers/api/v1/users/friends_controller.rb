@@ -1,7 +1,14 @@
-class Api::V1::Users::FriendsController < ApplicationController
+# frozen_string_literal: true
 
-  def index
-    user = User.find(params[:user_id])
-    render json: FriendsSerializer.new(user.buds)
+module Api
+  module V1
+    module Users
+      class FriendsController < ApplicationController
+        def index
+          user = User.find(params[:user_id])
+          render json: FriendsSerializer.new(user.buds)
+        end
+      end
+    end
   end
 end

@@ -1,13 +1,18 @@
-class Api::V1::GamesController < ApplicationController
+# frozen_string_literal: true
 
-  def create
-    game = Game.create(create_game_params)
-    render json: GamesSerializer.new(game)
-  end
+module Api
+  module V1
+    class GamesController < ApplicationController
+      def create
+        game = Game.create(create_game_params)
+        render json: GamesSerializer.new(game)
+      end
 
-  private
+      private
 
-  def create_game_params
-    params.permit(:name, :game_type, :num_players, :description, :age_range, :duration, :image)
+      def create_game_params
+        params.permit(:name, :game_type, :num_players, :description, :age_range, :duration, :image)
+      end
+    end
   end
 end
