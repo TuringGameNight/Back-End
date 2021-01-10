@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       resources :users do
         get :friends, to: 'users/friends#index'
       end
+
+      resources :games, only: [:create]
     end
   end
 end
