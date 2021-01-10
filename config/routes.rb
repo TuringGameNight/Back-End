@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       resources :games do
         post :games, to: 'games/games#create'
       end
+
+      resources :game_nights
     end
   end
 end
