@@ -36,7 +36,7 @@ phil = User.create(name: 'Phil',
 Friend.create(user_id: kate.id, bud_id: austin.id)
 Friend.create(user_id: kate.id, bud_id: phil.id)
 
-chess = Game.create(name: 'Chess',
+Game.create(name: 'Chess',
                     game_type: 'Board/Strategy',
                     description: 'Timeless',
                     duration: 15,
