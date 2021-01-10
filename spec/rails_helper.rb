@@ -3,7 +3,7 @@ require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -67,5 +67,10 @@ RSpec.configure do |config|
       with.test_framework :rspec
       with.library :rails
     end
+  end
+
+  VCR.configure do |config|
+    config.cassette_library_dir = 'fixtures/vcr_cassettes'
+    config.hook_into :webmock
   end
 end

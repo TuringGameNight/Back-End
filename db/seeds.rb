@@ -6,11 +6,40 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.destroy_all
+Friend.destroy_all
+Game.destroy_all
 
-User.create(name:"Kate",
-            google_id: "lkawe4ljkn230asd",
-            image: "",
-            google_token: "awe3rl23412",
-            refresh_token: "q2l34kladswf",
-            auth_token: "asdflwerb123",
-            email: "Kate@example.com")
+kate = User.create(name: 'Kate',
+                   google_id: 'lkawe4ljkn230asd',
+                   image: '',
+                   google_token: 'awe3rl23412',
+                   refresh_token: 'q2l34kladswf',
+                   auth_token: 'asdflwerb123',
+                   email: 'Kate@example.com')
+
+austin = User.create(name: 'Austin',
+                     google_id: 'asdfq234wraswdf',
+                     image: '',
+                     google_token: 'asdf34qasdf',
+                     refresh_token: '21354q12efraswdf',
+                     auth_token: 'q234rdf',
+                     email: 'Austin@example.com')
+
+phil = User.create(name: 'Phil',
+                   google_id: 'asdfq234wraswdf',
+                   image: '',
+                   google_token: 'asdf34qasdf',
+                   refresh_token: '21354q12efraswdf',
+                   auth_token: 'q234rdf',
+                   email: 'Phil@example.com')
+
+Friend.create(user_id: kate.id, bud_id: austin.id)
+Friend.create(user_id: kate.id, bud_id: phil.id)
+
+Game.create(name: 'Chess',
+                    game_type: 'Board/Strategy',
+                    description: 'Timeless',
+                    duration: 15,
+                    image: 'Knight',
+                    num_players: '2',
+                    age_range: 6)

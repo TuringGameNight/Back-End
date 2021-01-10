@@ -1,6 +1,5 @@
 module ResponseCheckers
   def user_response_checker(user_response, user)
-
     expect(user_response).to be_a(Hash)
 
     expect(user_response[:data]).to be_a(Hash)
@@ -33,13 +32,13 @@ module ResponseCheckers
     expect(user_response[:data][:attributes][:image]).to be_a(String)
     expect(user_response[:data][:attributes][:image]).to eq(user.image)
 
-    expect(user_response[:data]).to have_key(:relationships)
-    expect(user_response[:data][:relationships]).to be_a(Hash)
+    expect(user_response[:data][:attributes]).to have_key(:buds)
+    expect(user_response[:data][:attributes][:buds]).to be_a(Array)
 
-    expect(user_response[:data][:relationships]).to have_key(:buds)
-    expect(user_response[:data][:relationships][:buds]).to be_a(Hash)
+    expect(user_response[:data][:attributes]).to have_key(:games)
+    expect(user_response[:data][:attributes][:games]).to be_a(Array)
 
-    expect(user_response[:data][:relationships][:buds]).to have_key(:data)
-    expect(user_response[:data][:relationships][:buds][:data]).to be_an(Array)
+    expect(user_response[:data][:attributes]).to have_key(:game_nights)
+    expect(user_response[:data][:attributes][:game_nights]).to be_a(Array)
   end
 end

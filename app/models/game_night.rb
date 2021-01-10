@@ -17,7 +17,7 @@ class GameNight < ApplicationRecord
   end
 
   def method_name
-    select games.* from games where 
+    select games.* from games where
   end
 
   # def attendee_games(users)
