@@ -8,16 +8,20 @@ class GameNight < ApplicationRecord
   validates :number_of_games, presence: true
   validates :name, presence: true
 
+  def attendees
+    # I welcome optimizations here. But this took a while to
+    # realize that they needed to be separate.
+    User.
+    joins(:invitations).
+    where('invitations.game_night_id = ?', self.id) +
+    User.
+    joins(:game_nights).
+    where('game_nights.id = ?', self.id)
+  end
+
   def games_to_play
-    # I welcome optimizations here. But this took a WHILE.
-    attendees = User.
-                joins(:invitations).
-                where('invitations.game_night_id = ?', self.id).
-                pluck(:id)
-    users = attendees + User.
-                        joins(:game_nights).
-                        where('game_nights.id = ?', self.id).
-                        pluck(:id)
+
+    users = attendees.map { |user| user.id }
     Game.joins(:users).where(User.arel_table[:id].in(users)).distinct
   end
 end
