@@ -3,8 +3,8 @@ class UserSerializer
   attributes :id, :name, :email, :image
 
   attribute :buds do |user|
-    user.friends.each do |friend|
-      friend
+    user.buds.each do |bud|
+      bud
     end
   end
 
