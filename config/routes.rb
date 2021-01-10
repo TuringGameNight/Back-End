@@ -18,7 +18,7 @@ Rails.application.routes.draw do
         post :games, to: 'games/games#create'
       end
 
-      resources :game_nights
+      resources :game_nights, only: [:show, :create]
     end
   end
 end
