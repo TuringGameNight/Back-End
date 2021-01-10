@@ -15,17 +15,18 @@ RSpec.describe 'Create Game Night' do
     UserGame.create(user_id: user_2.id, game_id: game_2.id)
 
     game_night_params = {
-      :user_id=>user_1.id,
-      :name=>'Friday Fun Night',
-      :date=>'1/15/2021',
-      :number_of_games=>2,
-      :
+      :user_id => user_1.id,
+      :name => 'Friday Fun Night',
+      :date => '1/15/2021',
+      :number_of_games => 2
     }
 
     post '/api/v1/game_nights', headers: headers, params: JSON.generate(game_night_params)
 
     game_night = JSON.parse(response.body, symbolize_names: true)
 
-    binding.pry
+    expect(game_night[:success]).to eq("game night created")
+    expect(GameNight.last.name).to eq(game_night_params[:name])
+    expect(GameNight.last.user_id).to eq(game_night_params[:user_id])
   end
 end
