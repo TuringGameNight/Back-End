@@ -39,8 +39,8 @@ describe GameNight, type: :model do
     end
 
     it '#games_to_play' do
-      expect(@gn.games_to_play).to eq([@game_1, @game_2])
-      expect(@gn.games_to_play).to_not eq([@game_1, @game_2, @game_2])
+      expect(@gn.games_to_play.sort).to eq([@game_1, @game_2].sort)
+      expect(@gn.games_to_play.sort).to_not eq([@game_1, @game_2, @game_2].sort)
     end
 
     it '#attendees' do
