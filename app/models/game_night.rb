@@ -9,14 +9,22 @@ class GameNight < ApplicationRecord
   validates :name, presence: true
 
   def games_to_play
-    (attendee_games(self.users) + self.user.games).uniq
+    Game.joins(:user_games).where(user_games.user_id =
+      User.joins(:invitations).joins(:game_nights).
+      where('invitations.game_night_id = ? OR game_nights.id = ?', self.id, self.id)
+    )
+
   end
 
-  def attendee_games(users)
-    games = []
-    users.each do |user|
-      games << user.games
-    end
-    games
+  def method_name
+    select games.* from games where 
   end
+
+  # def attendee_games(users)
+  #   games = []
+  #   users.each do |user|
+  #     games << user.games
+  #   end
+  #   games
+  # end
 end
