@@ -5,16 +5,22 @@ module Api
     module Users
       class GamesController < ApplicationController
         def create
-           game = Game.find_by(atlas_id: params[:game_atlas_id])
+          game = Game.find_by(name: game_params[:name])
 
           if game
             UserGame.create!(user_id: params[:user_id], game_id: game.id)
-            # render json?
+            render json: { message: 'success' }
           else
-            # call out to api?...think this doesn't need to happen
-            # create user_game
-            # render json?
+            new_game = Game.create!(game_params)
+            UserGame.create!(user_id: params[:user_id], game_id: new_game.id)
+            render json: { message: 'success' }
           end
+        end
+
+        private
+
+        def game_params
+          params.permit(:name, :description, :duration, :image, :game_type, :age_range, :num_players)
         end
       end
     end
