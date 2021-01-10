@@ -31,9 +31,10 @@ describe GameNight, type: :model do
 
       @gn = GameNight.create!(
         user_id: @user_1.id,
-        name:'Friday Fun Night',
+        name: 'Friday Fun Night',
         date: '1/15/2021',
-        number_of_games: 2)
+        number_of_games: 2
+      )
 
       Invitation.create!(user_id: @user_2.id, game_night_id: @gn.id, status: 'pending')
     end

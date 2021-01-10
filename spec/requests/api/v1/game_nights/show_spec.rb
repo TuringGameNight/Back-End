@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'GET Game Night' do
-  it "gets the data about a game night" do
+  it 'gets the data about a game night' do
     user_1 = create :user
     user_2 = create :user
 
@@ -18,7 +18,8 @@ RSpec.describe 'GET Game Night' do
       user_id: user_1.id,
       name: 'Friday Fun Night',
       date: '1/15/2021',
-      number_of_games: 2)
+      number_of_games: 2
+    )
 
     Invitation.create!(
       status: 'pending',
