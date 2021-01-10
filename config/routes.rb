@@ -3,12 +3,13 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      delete 'users/games', to: 'users/games#destroy'
+      post 'users/games', to: 'users/games#create'
 
       resources :users do
         get :friends, to: 'users/friends#index'
       end
-      
-      post 'users/games', to: 'users/games#create'
+
 
       resources :games, only: [:create]
     end

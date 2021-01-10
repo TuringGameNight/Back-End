@@ -17,6 +17,12 @@ module Api
           end
         end
 
+        def destroy
+          user_game = UserGame.find_by!(user_id: params[:user_id], game_id: params[:game_id])
+          user_game.delete
+          render json: { message: 'success' }
+        end
+
         private
 
         def game_params
