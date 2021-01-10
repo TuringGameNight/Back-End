@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :game do
     name { "MyString" }
-    atlas_id { 'Kv6H4Kt3' }
     game_type { "MyString" }
     description { "MyString" }
     age_range { "MyString" }
