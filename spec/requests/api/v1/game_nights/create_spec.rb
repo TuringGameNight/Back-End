@@ -18,7 +18,8 @@ RSpec.describe 'Create Game Night' do
       :user_id => user_1.id,
       :name => 'Friday Fun Night',
       :date => '1/15/2021',
-      :number_of_games => 2
+      :number_of_games => 2,
+      :friends => ["#{user_2.id}"]
     }
 
     post '/api/v1/game_nights', headers: headers, params: JSON.generate(game_night_params)
@@ -28,5 +29,6 @@ RSpec.describe 'Create Game Night' do
     expect(game_night[:success]).to eq("game night created")
     expect(GameNight.last.name).to eq(game_night_params[:name])
     expect(GameNight.last.user_id).to eq(game_night_params[:user_id])
+    expect(Invitation.last.user_id). to eq(user_2.id)
   end
 end
