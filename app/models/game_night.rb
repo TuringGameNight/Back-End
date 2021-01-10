@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GameNight < ApplicationRecord
   belongs_to :user
 
