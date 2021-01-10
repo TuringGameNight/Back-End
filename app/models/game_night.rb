@@ -15,10 +15,10 @@ class GameNight < ApplicationRecord
     # realize that they needed to be separate.
     User
       .joins(:invitations)
-      .where('invitations.game_night_id = ?', id) +
+      .where(invitations: { game_night_id: id }) +
       User
       .joins(:game_nights)
-      .where('game_nights.id = ?', id)
+      .where(game_nights: { id: id })
   end
 
   def games_to_play

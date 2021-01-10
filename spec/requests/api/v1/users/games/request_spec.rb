@@ -58,6 +58,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
       end
     end
   end
+
   describe 'DELETE /users/games' do
     context 'when the game exists' do
       it 'can delete a game from user shelf' do
@@ -74,17 +75,18 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
-        expect(json_body[:message]).to eq("success")
+        expect(json_body[:message]).to eq('success')
         expect(UserGame.all).to eq([])
       end
     end
-    context "when the delete is unsuccessful" do
-      it "returns unsuccessful flash from json error" do
+
+    context 'when the delete is unsuccessful' do
+      it 'returns unsuccessful flash from json error' do
         delete api_v1_users_games_path
 
         json_body = JSON.parse(response.body, symbolize_names: true)
-        
-        expect(json_body[:message]).to eq("unsuccessful")
+
+        expect(json_body[:message]).to eq('unsuccessful')
         expect(json_body[:error]).to eq("Couldn't find UserGame")
       end
     end

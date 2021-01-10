@@ -12,12 +12,12 @@ describe GameNight, type: :model do
 
   describe 'relationships' do
     it { is_expected.to belong_to :user }
-    it { should have_many :invitations }
-    it { should have_many(:users).through(:invitations) }
+    it { is_expected.to have_many :invitations }
+    it { is_expected.to have_many(:users).through(:invitations) }
   end
 
   describe 'instance methods' do
-    before :each do
+    before do
       @user_1 = create :user
       @user_2 = create :user
 
@@ -43,7 +43,7 @@ describe GameNight, type: :model do
 
     it '#games_to_play' do
       expect(@gn.games_to_play.sort).to eq([@game_1, @game_2].sort)
-      expect(@gn.games_to_play.sort).to_not eq([@game_1, @game_2, @game_2].sort)
+      expect(@gn.games_to_play.sort).not_to eq([@game_1, @game_2, @game_2].sort)
     end
 
     it '#attendees' do
