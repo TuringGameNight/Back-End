@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :game do
-    name { "MyString" }
-    game_type { "MyString" }
-    description { "MyString" }
-    age_range { "MyString" }
+    name { Faker::Space.planet }
+    game_type { Faker::Space.moon }
+    description { Faker::Space.agency }
+    age_range { Faker::Number.between(from: 2, to: 17) }
     duration { 1 }
-    image { "MyString" }
-    num_players { "2-4" }
+    image { 'MyString' }
+    num_players { Faker::Number.between(from: 2, to: 10) }
   end
 end

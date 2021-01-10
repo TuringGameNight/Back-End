@@ -12,5 +12,9 @@ describe GameNight, type: :model do
 
   describe 'relationships' do
     it { is_expected.to belong_to :user }
+    it { should validate_presence_of :name }
+    it { should validate_presence_of :date }
+    it { should validate_presence_of :number_of_games }
+    it { should validate_presence_of :user_id }
   end
 end

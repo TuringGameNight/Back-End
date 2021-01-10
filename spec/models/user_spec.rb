@@ -17,5 +17,11 @@ describe User, type: :model do
     it { is_expected.to have_many :friends }
     it { is_expected.to have_many(:buds).through :friends }
     it { is_expected.to have_many :invitations }
+    it { should validate_uniqueness_of :email }
+    it { should validate_presence_of :email }
+    it { should validate_presence_of :name }
+    it { should validate_presence_of :google_id }
+    it { should validate_presence_of :google_token }
+    it { should validate_presence_of :auth_token }
   end
 end
