@@ -1,5 +1,4 @@
 class Api::V1::Games::FindController < ApplicationController
-
   def index
     game_name = params[:name]
     if Game.find_game_db(game_name).empty?

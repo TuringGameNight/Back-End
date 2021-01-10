@@ -3,9 +3,7 @@ class SearchService
     response = conn.get("/api/v1/search?name=#{query}").body
   end
 
-  private
-
   def self.conn
-    Faraday.new("#{ENV['SINATRA_URL']}")
+    Faraday.new((ENV['SINATRA_URL']).to_s)
   end
 end

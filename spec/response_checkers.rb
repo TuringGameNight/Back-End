@@ -1,6 +1,5 @@
 module ResponseCheckers
   def user_response_checker(user_response, user)
-
     expect(user_response).to be_a(Hash)
 
     expect(user_response[:data]).to be_a(Hash)

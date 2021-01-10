@@ -7,7 +7,7 @@ describe 'searches for a game before hitting the API', type: :request do
                          description: 'Timeless',
                          duration: 15,
                          image: 'Knight',
-                         num_players: "2",
+                         num_players: '2',
                          age_range: 6)
 
     get "/api/v1/games/find?name=#{chess.name}"
@@ -36,9 +36,9 @@ describe 'searches for a game before hitting the API', type: :request do
   end
 
   it 'then calls to the API if game was not found' do
-    random_game = "Pandemic"
+    random_game = 'Pandemic'
     headers = { 'CONTENT_TYPE' => 'application/json' }
-    VCR.use_cassette("pandemic_game_search") do
+    VCR.use_cassette('pandemic_game_search') do
       get "/api/v1/games/find?name=#{random_game}", headers: headers
 
       expect(response.status).to eq(200)
@@ -63,8 +63,8 @@ describe 'searches for a game before hitting the API', type: :request do
   end
 
   it 'If the search has no results, the response is empty' do
-    VCR.use_cassette("empty_game_search") do
-      get "/api/v1/games/find?name=jfdueis", headers: headers
+    VCR.use_cassette('empty_game_search') do
+      get '/api/v1/games/find?name=jfdueis', headers: headers
 
       expect(response.status).to eq(200)
       games = JSON.parse(response.body, symbolize_names: true)[:data]
