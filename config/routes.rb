@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      delete 'users/games', to: 'users/games#destroy'
+      post 'users/games', to: 'users/games#create'
+
       # Games lookup
       namespace :games do
         get '/find', to: 'find#index'

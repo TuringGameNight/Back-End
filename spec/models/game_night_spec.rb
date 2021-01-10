@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe GameNight, type: :model do
   describe 'validations' do
-    it { should validate_presence_of :name }
-    it { should validate_presence_of :date }
-    it { should validate_presence_of :number_of_games }
-    it { should validate_presence_of :user_id }
+    it { is_expected.to validate_presence_of :name }
+    it { is_expected.to validate_presence_of :date }
+    it { is_expected.to validate_presence_of :number_of_games }
+    it { is_expected.to validate_presence_of :user_id }
   end
 
   describe 'relationships' do
-    it { should belong_to :user }
+    it { is_expected.to belong_to :user }
     it { should have_many :invitations }
     it { should have_many(:users).through(:invitations) }
   end

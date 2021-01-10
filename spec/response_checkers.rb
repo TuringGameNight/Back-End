@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ResponseCheckers
   def user_response_checker(user_response, user)
     expect(user_response).to be_a(Hash)
