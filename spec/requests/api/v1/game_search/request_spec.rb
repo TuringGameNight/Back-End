@@ -15,23 +15,23 @@ describe 'searches for a game before hitting the API', type: :request do
     expect(response.status).to eq(200)
 
     games = JSON.parse(response.body, symbolize_names: true)[:data]
-    games.each do |games|
-      expect(games).to have_key(:id)
-      expect(games[:id]).to be_an(String)
-      expect(games[:attributes]).to have_key(:name)
-      expect(games[:attributes][:name]).to be_a(String)
-      expect(games[:attributes]).to have_key(:game_type)
-      expect(games[:attributes][:game_type]).to be_a(String)
-      expect(games[:attributes]).to have_key(:description)
-      expect(games[:attributes][:description]).to be_a(String)
-      expect(games[:attributes]).to have_key(:duration)
-      expect(games[:attributes][:duration]).to be_a(Integer)
-      expect(games[:attributes]).to have_key(:image)
-      expect(games[:attributes][:image]).to be_a(String)
-      expect(games[:attributes]).to have_key(:num_players)
-      expect(games[:attributes][:num_players]).to be_a(String)
-      expect(games[:attributes]).to have_key(:age_range)
-      expect(games[:attributes][:age_range]).to be_a(Integer)
+    games.each do |game|
+      expect(game).to have_key(:id)
+      expect(game[:id]).to be_an(String)
+      expect(game[:attributes]).to have_key(:name)
+      expect(game[:attributes][:name]).to be_a(String)
+      expect(game[:attributes]).to have_key(:game_type)
+      expect(game[:attributes][:game_type]).to be_a(String)
+      expect(game[:attributes]).to have_key(:description)
+      expect(game[:attributes][:description]).to be_a(String)
+      expect(game[:attributes]).to have_key(:duration)
+      expect(game[:attributes][:duration]).to be_a(Integer)
+      expect(game[:attributes]).to have_key(:image)
+      expect(game[:attributes][:image]).to be_a(String)
+      expect(game[:attributes]).to have_key(:num_players)
+      expect(game[:attributes][:num_players]).to be_a(String)
+      expect(game[:attributes]).to have_key(:age_range)
+      expect(game[:attributes][:age_range]).to be_a(Integer)
     end
   end
 
