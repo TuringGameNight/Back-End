@@ -16,7 +16,10 @@ Rails.application.routes.draw do
         get :friends, to: 'users/friends#index'
       end
 
+      # Games crud
       resources :games, only: [:create]
+
+      resources :game_nights, only: %i[show create]
     end
   end
 end

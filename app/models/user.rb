@@ -6,10 +6,10 @@ class User < ApplicationRecord
   validates :google_id, :google_token, :auth_token, presence: { require: true }
 
   has_many :game_nights, dependent: :destroy
-  has_many :invitations
+  has_many :invitations, dependent: :destroy
   has_many :friends, dependent: :destroy
   has_many :buds, through: :friends
-  has_many :user_games
+  has_many :user_games, dependent: :destroy
   has_many :games, through: :user_games
 
   def self.find_or_update(user_data)

@@ -9,6 +9,11 @@ describe Game, type: :model do
     it { is_expected.to validate_presence_of :duration }
   end
 
+  describe 'relationships' do
+    it { is_expected.to have_many :user_games }
+    it { is_expected.to have_many(:users).through(:user_games) }
+  end
+
   describe 'class methods' do
     it '.find_game_db()' do
       game = create(:game, name: 'Everdell')

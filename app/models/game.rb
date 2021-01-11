@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Game < ApplicationRecord
+  has_many :user_games, dependent: :destroy
+  has_many :users, through: :user_games
+
   validates :name, presence: true
   validates :description, presence: true
   validates :duration, presence: true

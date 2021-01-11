@@ -12,7 +12,7 @@ describe Friend, type: :model do
     it { is_expected.to belong_to :user }
     it { is_expected.to belong_to :bud }
 
-    it { should validate_presence_of :user_id }
-    it { should validate_presence_of :bud_id }
+    it { is_expected.to validate_presence_of :user_id }
+    it { is_expected.to validate_presence_of :bud_id }
   end
 end
