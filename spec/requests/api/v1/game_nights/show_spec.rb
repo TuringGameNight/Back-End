@@ -30,26 +30,6 @@ RSpec.describe 'GET Game Night' do
     get "/api/v1/game_nights/#{game_night.id}"
 
     game_night_data = JSON.parse(response.body, symbolize_names: true)
-
-    expect(game_night_data[:data]).to have_key(:id)
-    expect(game_night_data[:data][:id]).to be_an(String)
-
-    expect(game_night_data[:data][:attributes]).to have_key(:name)
-    expect(game_night_data[:data][:attributes][:name]).to be_an(String)
-    expect(game_night_data[:data][:attributes][:name]).to eq(game_night.name)
-
-    expect(game_night_data[:data][:attributes]).to have_key(:date)
-    expect(game_night_data[:data][:attributes][:date]).to be_an(String)
-    expect(game_night_data[:data][:attributes][:date]).to eq(game_night.date)
-
-    expect(game_night_data[:data][:attributes]).to have_key(:number_of_games)
-    expect(game_night_data[:data][:attributes][:number_of_games]).to be_an(Integer)
-    expect(game_night_data[:data][:attributes][:number_of_games]).to eq(game_night.number_of_games)
-
-    expect(game_night_data[:data][:attributes]).to have_key(:games)
-    expect(game_night_data[:data][:attributes][:games].count).to eq(2)
-
-    expect(game_night_data[:data][:attributes]).to have_key(:attendees)
-    expect(game_night_data[:data][:attributes][:attendees].count).to eq(2)
+    game_night_show_response_checker(game_night_data, game_night, user_2)
   end
 end

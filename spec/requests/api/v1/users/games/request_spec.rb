@@ -68,7 +68,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
 
     context 'when passed a user_id that does not exist' do
       it 'returns a 404' do
-        get api_v1_user_games_path(80000)
+        get api_v1_user_games_path(80_000)
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
