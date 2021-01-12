@@ -9,8 +9,14 @@ class GameNightSerializer
   end
 
   # Need to figure out how to just send name and email.
-  attribute :attendees do |game_night|
-    game_night.attendees.each do |attendee|
+  attribute :confirmed_attendees do |game_night|
+    game_night.confirmed_attendees.each do |attendee|
+      attendee
+    end
+  end
+
+  attribute :pending_attendees do |game_night|
+    game_night.pending_attendees.each do |attendee|
       attendee
     end
   end
