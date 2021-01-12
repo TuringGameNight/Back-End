@@ -14,7 +14,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
         create(:user_game, user: user, game: game2)
         create(:user_game, user: user, game: game3)
 
-        get api_v1_users_games_path, params: { user_id: user.id }
+        get api_v1_user_games_path(user.id)
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
@@ -54,7 +54,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
       it 'returns an empty list' do
         user = create(:user)
 
-        get api_v1_users_games_path, params: { user_id: user.id }
+        get api_v1_user_games_path(user.id)
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
@@ -68,7 +68,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
 
     context 'when passed a user_id that does not exist' do
       it 'returns a 404' do
-        get api_v1_users_games_path, params: { user_id: 80000 }
+        get api_v1_user_games_path(80000)
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
@@ -89,7 +89,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
         game = create(:game)
 
         expect(User.all.first.games).to eq([])
-        post api_v1_users_games_path, params: { user_id: user.id, name: game.name }
+        post api_v1_user_games_path(user.id), params: { name: game.name }
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
@@ -105,8 +105,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
         expect(User.all.first.games).to eq([])
         expect(Game.all).to eq([])
 
-        post api_v1_users_games_path, params: {
-          user_id: user.id,
+        post api_v1_user_games_path(user.id), params: {
           name: 'clue',
           description: 'The best game',
           duration: 90
@@ -124,8 +123,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
       it 'returns a 404' do
         user = create(:user)
 
-        post api_v1_users_games_path, params: {
-          user_id: user.id,
+        post api_v1_user_games_path(user.id), params: {
           name: 'clue'
         }
 
@@ -147,10 +145,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
 
         expect(UserGame.all.first).to eq(user_game)
 
-        delete api_v1_users_games_path, params: {
-          user_id: user.id,
-          game_id: game.id
-        }
+        delete api_v1_user_games_path(user.id), params: { game_id: game.id }
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
@@ -161,7 +156,9 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
 
     context 'when the delete is unsuccessful' do
       it 'returns unsuccessful flash from json error' do
-        delete api_v1_users_games_path
+        user = create(:user)
+
+        delete api_v1_user_games_path(user.id)
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 

@@ -3,10 +3,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get 'users/games', to: 'users/games#index'
-      post 'users/games', to: 'users/games#create'
-      delete 'users/games', to: 'users/games#destroy'
-
       # Games lookup
       namespace :games do
         get '/find', to: 'find#index'
@@ -15,11 +11,13 @@ Rails.application.routes.draw do
       # User crud
       resources :users do
         get :friends, to: 'users/friends#index'
+        get :games, to: 'users/games#index'
+        post :games, to: 'users/games#create'
+        delete :games, to: 'users/games#destroy'
       end
 
       # Games crud
       resources :games, only: [:create]
-
       resources :game_nights, only: %i[show create]
     end
   end
