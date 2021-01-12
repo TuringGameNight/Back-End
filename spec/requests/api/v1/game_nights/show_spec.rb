@@ -4,9 +4,12 @@ RSpec.describe 'GET Game Night' do
   it 'gets the data about a game night' do
     user_1 = create :user
     user_2 = create :user
+    user_3 = create :user
 
     Friend.create(user_id: user_1.id, bud_id: user_2.id)
     Friend.create(user_id: user_2.id, bud_id: user_1.id)
+    Friend.create(user_id: user_1.id, bud_id: user_3.id)
+    Friend.create(user_id: user_3.id, bud_id: user_1.id)
 
     game_1 = create :game
     game_2 = create :game
@@ -22,15 +25,21 @@ RSpec.describe 'GET Game Night' do
     )
 
     Invitation.create!(
-      status: 'pending',
+      status: 'accepted',
       user_id: user_2.id,
+      game_night_id: game_night.id
+    )
+
+    Invitation.create!(
+      status: 'pending',
+      user_id: user_3.id,
       game_night_id: game_night.id
     )
 
     get "/api/v1/game_nights/#{game_night.id}"
 
     game_night_data = JSON.parse(response.body, symbolize_names: true)
-
+  
     expect(game_night_data[:data]).to have_key(:id)
     expect(game_night_data[:data][:id]).to be_an(String)
 
@@ -49,7 +58,10 @@ RSpec.describe 'GET Game Night' do
     expect(game_night_data[:data][:attributes]).to have_key(:games)
     expect(game_night_data[:data][:attributes][:games].count).to eq(2)
 
-    expect(game_night_data[:data][:attributes]).to have_key(:attendees)
-    expect(game_night_data[:data][:attributes][:attendees].count).to eq(2)
+    expect(game_night_data[:data][:attributes]).to have_key(:confirmed_attendees)
+    expect(game_night_data[:data][:attributes][:confirmed_attendees].count).to eq(2)
+
+    expect(game_night_data[:data][:attributes]).to have_key(:pending_attendees)
+    expect(game_night_data[:data][:attributes][:pending_attendees].count).to eq(1)
   end
 end
