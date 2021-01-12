@@ -97,6 +97,5 @@ module ResponseCheckers
 
     expect(game_night_data[:data][:attributes]).to have_key(:pending_attendees)
     expect(game_night_data[:data][:attributes][:pending_attendees]).to be_an(Array)
-
   end
 end
