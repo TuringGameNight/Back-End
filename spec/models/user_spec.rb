@@ -54,7 +54,7 @@ describe User, type: :model do
       )
 
       Invitation.create!(
-        status: 'pending',
+        status: 'declined',
         user_id: user_1.id,
         game_night_id: game_night_2.id
       )

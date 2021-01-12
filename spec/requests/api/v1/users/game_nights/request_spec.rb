@@ -59,7 +59,7 @@ RSpec.describe 'api/v1/users/game_nights/request', type: :request do
         user_1 = create :user
         user_2 = create :user
 
-        game_night = GameNight.create!(
+        GameNight.create!(
           user_id: user_2.id,
           name: 'Friday Fun Night',
           date: '1/15/2021',
@@ -79,7 +79,7 @@ RSpec.describe 'api/v1/users/game_nights/request', type: :request do
       it 'returns a 404' do
         get api_v1_user_game_nights_path(3)
 
-        json_body = JSON.parse(response.body, symbolize_names: true)
+        JSON.parse(response.body, symbolize_names: true)
 
         expect(response.status).to eq(404)
       end
