@@ -8,10 +8,12 @@ class GameNightSerializer
     end
   end
 
-  # Need to figure out how to just send name and email.
   attribute :attendees do |game_night|
-    game_night.attendees.each do |attendee|
-      attendee
+    game_night.attendees.map do |attendee|
+      {
+        name: attendee.name,
+        email: attendee.email
+      }
     end
   end
 end

@@ -5,8 +5,11 @@ class UserSerializer
   attributes :id, :name, :email, :image
 
   attribute :buds do |user|
-    user.buds.each do |bud|
-      bud
+    user.buds.map do |bud|
+      {
+        name: bud.name,
+        email: bud.email
+      }
     end
   end
 

@@ -6,7 +6,7 @@ module Api
       class GameNightsController < ApplicationController
         def index
           user = User.find(params[:user_id])
-          render json: GameNightSerializer.new(user.get_game_nights)
+          render json: UserGameNightSerializer.new(user.get_game_nights)
         end
       end
     end
