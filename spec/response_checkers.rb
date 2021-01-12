@@ -74,7 +74,6 @@ module ResponseCheckers
   end
 
   def game_night_show_response_checker(game_night_data, game_night, user)
-
     expect(game_night_data[:data]).to have_key(:id)
     expect(game_night_data[:data][:id]).to be_an(String)
 
