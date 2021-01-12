@@ -5,8 +5,8 @@ module Api
     module Users
       class FriendsController < ApplicationController
         def index
-          results = User.joins(:friends).where("friends.user_id": params[:user_id]).select("users.name, users.email, friends.status")
-          render json: FriendsSerializer.new(results)
+          user = User.find(params[:user_id])
+          render json: FriendsSerializer.new(user)
         end
 
         def update
