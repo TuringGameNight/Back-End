@@ -3,6 +3,54 @@
 require 'rails_helper'
 
 RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
+  describe 'GET /users/games' do
+    context 'when passed a user_id of a user with games' do
+      it 'returns a list of user games' do
+        user = create(:user)
+        game1 = create(:game)
+        game2 = create(:game)
+        game3 = create(:game)
+        create(:user_game, user: user, game: game1)
+        create(:user_game, user: user, game: game2)
+        create(:user_game, user: user, game: game3)
+
+        get api_v1_users_games_path, params: { user_id: user.id }
+
+        json_body = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response.status).to eq(200)
+        expect(json_body).to be_a(Hash)
+        expect(json_body).to have_key(:data)
+        expect(json_body[:data]).to be_a(Array)
+        expect(json_body[:data].count).to eq(3)
+        expect(json_body[:data][0][:attributes]).to be_a(Hash)
+
+        json_body[:data].each do |item|
+          expect(item[:attributes]).to have_key(:name)
+          expect(item[:attributes][:name]).to be_a(String)
+
+          expect(item[:attributes]).to have_key(:game_type)
+          expect(item[:attributes][:game_type]).to be_a(String)
+
+          expect(item[:attributes]).to have_key(:description)
+          expect(item[:attributes][:description]).to be_a(String)
+
+          expect(item[:attributes]).to have_key(:duration)
+          expect(item[:attributes][:duration]).to be_a(Integer)
+
+          expect(item[:attributes]).to have_key(:image)
+          expect(item[:attributes][:image]).to be_a(String)
+
+          expect(item[:attributes]).to have_key(:num_players)
+          expect(item[:attributes][:num_players]).to be_a(String)
+
+          expect(item[:attributes]).to have_key(:age_range)
+          expect(item[:attributes][:age_range]).to be_a(String)
+        end
+      end
+    end
+  end
+
   describe 'POST /users/games' do
     context 'when the game exists' do
       it 'creates a user_game record' do

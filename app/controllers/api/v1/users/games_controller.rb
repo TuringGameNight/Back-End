@@ -4,6 +4,12 @@ module Api
   module V1
     module Users
       class GamesController < ApplicationController
+        def index
+          user_games = User.find(params[:user_id]).games
+          
+          render json: GamesSerializer.new(user_games)
+        end
+
         def create
           game = Game.find_by(name: game_params[:name])
 
