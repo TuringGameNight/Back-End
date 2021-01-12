@@ -2,5 +2,24 @@
 
 class FriendsSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name, :email, :status
+  
+  attribute :accepted_friends do |user|
+    user.get_accepted_buds.map do |bud|
+      {
+        id: bud.id,
+        name: bud.name,
+        email: bud.email,
+      }
+    end
+  end
+
+  attribute :pending_friends do |user|
+    user.get_pending_buds.map do |bud|
+      {
+        id: bud.id,
+        name: bud.name,
+        email: bud.email,
+      }
+    end
+  end
 end
