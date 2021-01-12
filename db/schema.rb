@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2021_01_12_165605) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "num_players"
-    t.integer "age_range"
+    t.string "age_range"
   end
 
   create_table "invitations", force: :cascade do |t|

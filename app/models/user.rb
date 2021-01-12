@@ -25,6 +25,11 @@ class User < ApplicationRecord
     user
   end
 
+  def get_game_nights
+    attendee_gns = GameNight.joins(:invitations).where(invitations: { user_id: id })
+    attendee_gns + game_nights
+  end
+
   def get_accepted_buds
     bud_ids = User.joins(:friends).where("friends.user_id": self.id, "friends.status": "accepted").pluck("friends.bud_id")
     bud_ids.map do |bud_id|
