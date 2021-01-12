@@ -16,6 +16,12 @@ Rails.application.routes.draw do
         get :friends, to: 'users/friends#index'
       end
 
+      patch '/users/:id/friends/:id', to: 'users/friends#update'
+      # namespace :users do
+      #   resources :friends, only: [:index, :update]
+      #   # patch "/friends/:id", to: 'users/friends#update'
+      # end
+
       # Games crud
       resources :games, only: [:create]
 
