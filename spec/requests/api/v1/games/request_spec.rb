@@ -17,7 +17,7 @@ RSpec.describe 'Api/V1/Games', type: :request do
         duration: 2,
         image: 'N/A'
       }
-      
+
       json_body = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(200)
@@ -50,7 +50,7 @@ RSpec.describe 'Api/V1/Games', type: :request do
 
         post api_v1_games_path, params: {
           user_id: user.id,
-          name: 'DnD',
+          name: 'DnD'
         }
 
         json_body = JSON.parse(response.body, symbolize_names: true)
