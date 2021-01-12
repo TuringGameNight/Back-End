@@ -11,8 +11,6 @@ class GameNight < ApplicationRecord
   validates :name, presence: true
 
   def confirmed_attendees
-    # I welcome optimizations here. But this took a while to
-    # realize that they needed to be separate.
     User
       .joins(:invitations)
       .where(invitations: { game_night_id: id, status: 'accepted' }) +
@@ -22,8 +20,6 @@ class GameNight < ApplicationRecord
   end
 
   def pending_attendees
-    # I welcome optimizations here. But this took a while to
-    # realize that they needed to be separate.
     User
       .joins(:invitations)
       .where(invitations: { game_night_id: id, status: 'pending'})
