@@ -22,23 +22,23 @@ class Api::V1::GameNightsController < ApplicationController
   #   end
   # end
 
-    def create
-      game_night = GameNight.new(game_night_params)
+  def create
+    game_night = GameNight.new(game_night_params)
 
-      if game_night.save && params[:friends].count.positive?
-        params[:friends].each do |friend_id|
-          Invitation.create!(game_night_id: game_night.id, user_id: friend_id, status: 'pending')
-        end
-
-        render json: { message: 'success' }, status: :created
-      else
-        render json: { message: 'unsuccessful', error: 'Could not create game night' }, status: 422
+    if game_night.save && params[:friends].count.positive?
+      params[:friends].each do |friend_id|
+        Invitation.create!(game_night_id: game_night.id, user_id: friend_id, status: 'pending')
       end
-    end
 
-    private
-
-    def game_night_params
-      params.permit(:name, :user_id, :date, :number_of_games)
+      render json: { message: 'success' }, status: :created
+    else
+      render json: { message: 'unsuccessful', error: 'Could not create game night' }, status: 422
     end
   end
+
+  private
+
+  def game_night_params
+    params.permit(:name, :user_id, :date, :number_of_games)
+  end
+end
