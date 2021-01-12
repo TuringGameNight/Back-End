@@ -2,23 +2,23 @@ require 'rails_helper'
 
 RSpec.describe 'GET Game Night' do
   it 'gets the data about a game night' do
-    user_1 = create :user
-    user_2 = create :user
-    user_3 = create :user
+    user1 = create :user
+    user2 = create :user
+    user3 = create :user
 
-    Friend.create(user_id: user_1.id, bud_id: user_2.id)
-    Friend.create(user_id: user_2.id, bud_id: user_1.id)
-    Friend.create(user_id: user_1.id, bud_id: user_3.id)
-    Friend.create(user_id: user_3.id, bud_id: user_1.id)
+    Friend.create(user_id: user1.id, bud_id: user2.id)
+    Friend.create(user_id: user2.id, bud_id: user1.id)
+    Friend.create(user_id: user1.id, bud_id: user3.id)
+    Friend.create(user_id: user3.id, bud_id: user1.id)
 
-    game_1 = create :game
-    game_2 = create :game
+    game1 = create :game
+    game2 = create :game
 
-    UserGame.create(user_id: user_1.id, game_id: game_1.id)
-    UserGame.create(user_id: user_2.id, game_id: game_2.id)
+    UserGame.create(user_id: user1.id, game_id: game1.id)
+    UserGame.create(user_id: user2.id, game_id: game2.id)
 
-    game_night = GameNight.create!(
-      user_id: user_1.id,
+    gamenight = GameNight.create!(
+      user_id: user1.id,
       name: 'Friday Fun Night',
       date: '1/15/2021',
       number_of_games: 2
@@ -26,42 +26,42 @@ RSpec.describe 'GET Game Night' do
 
     Invitation.create!(
       status: 'accepted',
-      user_id: user_2.id,
-      game_night_id: game_night.id
+      user_id: user2.id,
+      gamenight_id: gamenight.id
     )
 
     Invitation.create!(
       status: 'pending',
-      user_id: user_3.id,
-      game_night_id: game_night.id
+      user_id: user3.id,
+      gamenight_id: gamenight.id
     )
 
-    get "/api/v1/game_nights/#{game_night.id}"
+    get "/api/v1/gamenights/#{gamenight.id}"
 
-    game_night_data = JSON.parse(response.body, symbolize_names: true)
-  
-    expect(game_night_data[:data]).to have_key(:id)
-    expect(game_night_data[:data][:id]).to be_an(String)
+    gamenightdata = JSON.parse(response.body, symbolize_names: true)
 
-    expect(game_night_data[:data][:attributes]).to have_key(:name)
-    expect(game_night_data[:data][:attributes][:name]).to be_an(String)
-    expect(game_night_data[:data][:attributes][:name]).to eq(game_night.name)
+    expect(gamenightdata[:data]).to have_key(:id)
+    expect(gamenightdata[:data][:id]).to be_an(String)
 
-    expect(game_night_data[:data][:attributes]).to have_key(:date)
-    expect(game_night_data[:data][:attributes][:date]).to be_an(String)
-    expect(game_night_data[:data][:attributes][:date]).to eq(game_night.date)
+    expect(gamenightdata[:data][:attributes]).to have_key(:name)
+    expect(gamenightdata[:data][:attributes][:name]).to be_an(String)
+    expect(gamenightdata[:data][:attributes][:name]).to eq(gamenight.name)
 
-    expect(game_night_data[:data][:attributes]).to have_key(:number_of_games)
-    expect(game_night_data[:data][:attributes][:number_of_games]).to be_an(Integer)
-    expect(game_night_data[:data][:attributes][:number_of_games]).to eq(game_night.number_of_games)
+    expect(gamenightdata[:data][:attributes]).to have_key(:date)
+    expect(gamenightdata[:data][:attributes][:date]).to be_an(String)
+    expect(gamenightdata[:data][:attributes][:date]).to eq(gamenight.date)
 
-    expect(game_night_data[:data][:attributes]).to have_key(:games)
-    expect(game_night_data[:data][:attributes][:games].count).to eq(2)
+    expect(gamenightdata[:data][:attributes]).to have_key(:number_of_games)
+    expect(gamenightdata[:data][:attributes][:number_of_games]).to be_an(Integer)
+    expect(gamenightdata[:data][:attributes][:number_of_games]).to eq(gamenight.number_of_games)
 
-    expect(game_night_data[:data][:attributes]).to have_key(:confirmed_attendees)
-    expect(game_night_data[:data][:attributes][:confirmed_attendees].count).to eq(2)
+    expect(gamenightdata[:data][:attributes]).to have_key(:games)
+    expect(gamenightdata[:data][:attributes][:games].count).to eq(2)
 
-    expect(game_night_data[:data][:attributes]).to have_key(:pending_attendees)
-    expect(game_night_data[:data][:attributes][:pending_attendees].count).to eq(1)
+    expect(gamenightdata[:data][:attributes]).to have_key(:confirmed_attendees)
+    expect(gamenightdata[:data][:attributes][:confirmed_attendees].count).to eq(2)
+
+    expect(gamenightdata[:data][:attributes]).to have_key(:pending_attendees)
+    expect(gamenightdata[:data][:attributes][:pending_attendees].count).to eq(1)
   end
 end
