@@ -43,4 +43,33 @@ module ResponseCheckers
     expect(user_response[:data][:attributes]).to have_key(:game_nights)
     expect(user_response[:data][:attributes][:game_nights]).to be_a(Array)
   end
+
+  def user_game_nights_response_checker(user_gn_response, gn_1)
+    expect(user_gn_response).to be_a(Hash)
+
+    expect(user_gn_response[:data]).to be_a(Array)
+
+    expect(user_gn_response[:data].first).to have_key(:id)
+    expect(user_gn_response[:data].first[:id]).to be_a(String)
+    expect(user_gn_response[:data].first[:id].to_i).to eq(gn_1.id)
+
+    expect(user_gn_response[:data].first).to have_key(:type)
+    expect(user_gn_response[:data].first[:type]).to be_a(String)
+    expect(user_gn_response[:data].first[:type]).to eq('game_night')
+
+    expect(user_gn_response[:data].first).to have_key(:attributes)
+    expect(user_gn_response[:data].first[:attributes]).to be_a(Hash)
+
+    expect(user_gn_response[:data].first[:attributes]).to have_key(:name)
+    expect(user_gn_response[:data].first[:attributes][:name]).to be_a(String)
+    expect(user_gn_response[:data].first[:attributes][:name]).to eq(gn_1.name)
+
+    expect(user_gn_response[:data].first[:attributes]).to have_key(:date)
+    expect(user_gn_response[:data].first[:attributes][:date]).to be_a(String)
+    expect(user_gn_response[:data].first[:attributes][:date]).to eq(gn_1.date)
+
+    expect(user_gn_response[:data].first[:attributes]).to have_key(:number_of_games)
+    expect(user_gn_response[:data].first[:attributes][:number_of_games]).to be_a(Integer)
+    expect(user_gn_response[:data].first[:attributes][:number_of_games]).to eq(gn_1.number_of_games)
+  end
 end
