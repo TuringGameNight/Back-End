@@ -3,7 +3,7 @@
 class UserSerializer
   include FastJsonapi::ObjectSerializer
   attributes :id, :name, :email, :image
-
+  
   attribute :buds do |user|
     user.buds.each do |bud|
       bud
