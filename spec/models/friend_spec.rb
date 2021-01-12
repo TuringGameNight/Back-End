@@ -6,6 +6,7 @@ describe Friend, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of :user_id }
     it { is_expected.to validate_presence_of :bud_id }
+    it { is_expected.to validate_presence_of :status }
   end
 
   describe 'relationships' do
