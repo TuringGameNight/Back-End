@@ -49,6 +49,37 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
         end
       end
     end
+
+    context 'when passed a user_id of a user with no games' do
+      it 'returns an empty list' do
+        user = create(:user)
+
+        get api_v1_users_games_path, params: { user_id: user.id }
+
+        json_body = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response.status).to eq(200)
+        expect(json_body).to be_a(Hash)
+        expect(json_body).to have_key(:data)
+        expect(json_body[:data]).to be_a(Array)
+        expect(json_body[:data]).to be_empty
+      end
+    end
+
+    context 'when passed a user_id that does not exist' do
+      it 'returns a 404' do
+        get api_v1_users_games_path, params: { user_id: 80000 }
+
+        json_body = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response.status).to eq(404)
+        expect(json_body).to be_a(Hash)
+        expect(json_body).to have_key(:message)
+        expect(json_body[:message]).to eq('unsuccessful')
+        expect(json_body).to have_key(:error)
+        expect(json_body[:error]).to eq("Couldn't find User with 'id'=80000")
+      end
+    end
   end
 
   describe 'POST /users/games' do
