@@ -4,6 +4,12 @@ module Api
   module V1
     module Users
       class GamesController < ApplicationController
+        def index
+          user_games = User.find(params[:user_id]).games
+
+          render json: GamesSerializer.new(user_games)
+        end
+
         def create
           game = Game.find_by(name: game_params[:name])
 
@@ -20,6 +26,7 @@ module Api
         def destroy
           user_game = UserGame.find_by!(user_id: params[:user_id], game_id: params[:game_id])
           user_game.delete
+
           render json: { message: 'success' }
         end
 

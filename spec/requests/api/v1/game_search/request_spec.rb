@@ -31,7 +31,7 @@ describe 'searches for a game before hitting the API', type: :request do
       expect(game[:attributes]).to have_key(:num_players)
       expect(game[:attributes][:num_players]).to be_a(String)
       expect(game[:attributes]).to have_key(:age_range)
-      expect(game[:attributes][:age_range]).to be_a(Integer)
+      expect(game[:attributes][:age_range]).to be_a(String)
     end
   end
 
