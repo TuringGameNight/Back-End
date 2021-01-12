@@ -27,16 +27,15 @@ RSpec.describe 'GET Game Night' do
     Invitation.create!(
       status: 'accepted',
       user_id: user2.id,
-      gamenight_id: gamenight.id
+      game_night_id: gamenight.id
     )
-
     Invitation.create!(
       status: 'pending',
       user_id: user3.id,
-      gamenight_id: gamenight.id
+      game_night_id: gamenight.id
     )
 
-    get "/api/v1/gamenights/#{gamenight.id}"
+    get "/api/v1/game_nights/#{gamenight.id}"
 
     gamenightdata = JSON.parse(response.body, symbolize_names: true)
 
