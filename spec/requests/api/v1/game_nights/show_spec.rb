@@ -40,6 +40,7 @@ RSpec.describe 'GET Game Night' do
     game_night_data = JSON.parse(response.body, symbolize_names: true)
 
     game_night_show_response_checker(game_night_data, game_night, user1)
+    expect(game_night_data[:data][:attributes][:games].count).to eq(2)
     expect(game_night_data[:data][:attributes][:confirmed_attendees].count).to eq(2)
     expect(game_night_data[:data][:attributes][:confirmed_attendees].first[:data][:id]).to eq(user2.id.to_s)
     expect(game_night_data[:data][:attributes][:confirmed_attendees].first[:data][:attributes][:name]).to eq(user2.name)
@@ -55,5 +56,27 @@ RSpec.describe 'GET Game Night' do
     expect(game_night_data[:data][:attributes][:pending_attendees].first[:data][:id]).to eq(user3.id.to_s)
     expect(game_night_data[:data][:attributes][:pending_attendees].first[:data][:attributes][:name]).to eq(user3.name)
     expect(game_night_data[:data][:attributes][:pending_attendees].first[:data][:attributes][:email]).to eq(user3.email)
+  end
+
+  it 'gets the data about a game night that has no invitations' do
+    user1 = create :user
+
+    game1 = create :game
+
+    UserGame.create(user_id: user1.id, game_id: game1.id)
+
+    game_night = GameNight.create!(
+      user_id: user1.id,
+      name: 'Friday Fun Night',
+      date: '1/15/2021',
+      number_of_games: 1
+    )
+
+    get "/api/v1/game_nights/#{game_night.id}"
+
+    game_night_data = JSON.parse(response.body, symbolize_names: true)
+
+    game_night_show_response_checker(game_night_data, game_night, user1)
+    expect(game_night_data[:data][:attributes][:games].count).to eq(1)
   end
 end
