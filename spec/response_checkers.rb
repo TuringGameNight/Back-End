@@ -91,7 +91,6 @@ module ResponseCheckers
     expect(game_night_data[:data][:attributes][:number_of_games]).to eq(game_night.number_of_games)
 
     expect(game_night_data[:data][:attributes]).to have_key(:games)
-    expect(game_night_data[:data][:attributes][:games].count).to eq(2)
 
     expect(game_night_data[:data][:attributes]).to have_key(:confirmed_attendees)
     expect(game_night_data[:data][:attributes][:confirmed_attendees]).to be_an(Array)
