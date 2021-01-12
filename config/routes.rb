@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       # User crud
       resources :users do
         get :friends, to: 'users/friends#index'
+        get :game_nights, to: 'users/game_nights#index'
       end
 
       # Games crud
