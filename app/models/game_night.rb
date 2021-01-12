@@ -22,7 +22,7 @@ class GameNight < ApplicationRecord
   def pending_attendees
     User
       .joins(:invitations)
-      .where(invitations: { game_night_id: id, status: 'pending'})
+      .where(invitations: { game_night_id: id, status: 'pending' })
   end
 
   def games_to_play
