@@ -46,11 +46,23 @@ $rails s
 4. Enter any of the endpoints listed to view the data available!
 
 ## Endpoints:
-- users/:id/friends -> Returns a list of friends names and email addresses
-> ![image](https://user-images.githubusercontent.com/58994078/104082818-72842680-51f6-11eb-9143-85baaaa50e42.png)
 
-- http://localhost:3000/api/v1/games/find.chess -> Returns a list of games
+### Users
+#### Friends
+- /api/v1/users/:id/friends -> Returns a list of friends names and email addresses
+> ![image](https://user-images.githubusercontent.com/58994078/104082818-72842680-51f6-11eb-9143-85baaaa50e42.png)
+#### Games
+- /api/v1/users/:id/games -> Returns a list of a user's games
+
+#### Game Nights
+- /api/v1/users/:id/game-nights -> Returns a list of a user's game nights
+
+### Games
+- /api/v1/games/find?name=chess -> Returns a list of games
 > ![image](https://user-images.githubusercontent.com/58994078/104083285-9a758900-51fa-11eb-820c-035d2a4ce459.png)
+
+### Game Nights
+- /api/v1/game_nights/1 -> Returns data on a game night
 
 ## Project Leads
 
