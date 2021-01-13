@@ -5,10 +5,11 @@ module Api
     class InvitationsController < ApplicationController
       def update
         Invitation.update(invitation_params)
-        unless Invitation.find_by(id: invitation_params[:id].to_i).status == 'pending'
-          render json: { message: 'success' }, status: :accepted
+        if Invitation.find_by(id: invitation_params[:id].to_i).status == 'pending'
+          render json: { message: 'unsuccessful', error: 'Could not update invitation status' },
+                 status: :unprocessable_entity
         else
-          render json: { message: 'unsuccessful', error: 'Could not update invitation status' }, status: :unprocessable_entity
+          render json: { message: 'success' }, status: :accepted
         end
       end
 
