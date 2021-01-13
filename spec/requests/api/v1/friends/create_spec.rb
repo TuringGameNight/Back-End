@@ -31,10 +31,9 @@ describe 'Friends endpoint', type: :request do
 
     post api_v1_user_friends_path(request)
 
-    friends = JSON.parse(response.body, symbolize_names: true)[:data]
+    results = JSON.parse(response.body, symbolize_names: true)
 
-    expect(response).to be_successful
-    expect(friends).to eq([])
+    expect(results[:message]).to eq('unsuccessful')
   end
 
   it 'does not create a friendship if the user tries to friend themselves' do
@@ -47,9 +46,8 @@ describe 'Friends endpoint', type: :request do
 
     post api_v1_user_friends_path(request)
 
-    friends = JSON.parse(response.body, symbolize_names: true)[:data]
+    results = JSON.parse(response.body, symbolize_names: true)[:data]
 
-    expect(response).to be_successful
-    expect(friends).to eq([])
+    expect(results[:message]).to eq('unsuccessful')
   end
 end

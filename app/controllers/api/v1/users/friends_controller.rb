@@ -21,12 +21,12 @@ module Api
         def create
           user = User.find(params[:id])
           friend = User.find_by(email: params[:friend_email])
-
           if friend != nil && user.id != friend.id
             Friend.create(user_id: user.id, bud_id: friend.id)
             render json: FriendsSerializer.new(user)
           else
-            render json: { message: 'unsuccessful' }, status: :unprocessable_entity
+            render json: { message: 'unsuccessful' },
+                           status: :unprocessable_entity
           end
         end
       end
