@@ -55,6 +55,28 @@ GET http://localhost:3000/api/v1/users/1/friends
 
 Returns all friends of a user
 ```
+```json
+{
+    "data": [
+        {
+            "id": "2",
+            "type": "friends",
+            "attributes": {
+                "name": "Austin",
+                "email": "Austin@example.com"
+            }
+        },
+        {
+            "id": "3",
+            "type": "friends",
+            "attributes": {
+                "name": "Phil",
+                "email": "Phil@example.com"
+            }
+        }
+    ]
+}
+```
 <img src="https://i.ibb.co/4ZWHhBS/game-night-user-friends.png" alt="user-friends">
 
 #### Games
