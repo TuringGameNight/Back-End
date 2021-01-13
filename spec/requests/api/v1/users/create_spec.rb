@@ -7,15 +7,15 @@ RSpec.describe 'Create User' do
     user = create(:user)
     user_params = { user_data: { uid: user.google_id,
                                  info: {
-                                        name: user.name,
-                                         email: user.email,
-                                         image: user.image
-                                       },
-                                        credentials: {
-                                                token: user.auth_token,
-                                                refresh_token: user.refresh_token,
-                                                expires_at: user.token_expiration
-                                                } } }
+                                   name: user.name,
+                                   email: user.email,
+                                   image: user.image
+                                 },
+                                 credentials: {
+                                   token: user.auth_token,
+                                   refresh_token: user.refresh_token,
+                                   expires_at: user.token_expiration
+                                 } } }
     headers = { 'CONTENT_TYPE' => 'application/json' }
 
     post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
@@ -33,7 +33,7 @@ RSpec.describe 'Create User' do
                                          image: 'elonbeingcoolerthanyou.imgur.com' },
                                  credentials: { token: '0101010101',
                                                 refresh_token: '1010101010101',
-                                                expires_at: 123123123 } } }
+                                                expires_at: 123_123_123 } } }
     headers = { 'CONTENT_TYPE' => 'application/json' }
 
     post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
@@ -51,16 +51,15 @@ RSpec.describe 'Create User' do
                                          image: 'elonbeingcoolerthanyou.imgur.com' },
                                  credentials: { token: '0101010101',
                                                 refresh_token: '1010101010101',
-                                                expires_at: 123123123 } } }
+                                                expires_at: 123_123_123 } } }
     headers = { 'CONTENT_TYPE' => 'application/json' }
 
     post '/api/v1/users', headers: headers, params: JSON.generate(user_params)
 
     error_response = JSON.parse(response.body, symbolize_names: true)
-    expect(error_response[:message]).to eq("unsuccessful")
-    expect(error_response[:error]).to eq("Could not find or create user")
+    expect(error_response[:message]).to eq('unsuccessful')
+    expect(error_response[:error]).to eq('Could not find or create user')
     expect(response.status).to eq(422)
     expect(User.all.empty?).to be(true)
   end
-
 end

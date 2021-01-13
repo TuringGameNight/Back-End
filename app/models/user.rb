@@ -21,7 +21,7 @@ class User < ApplicationRecord
       auth_token: user_data[:credentials][:token],
       refresh_token: user_data[:credentials][:refresh_token],
       token_expiration: user_data[:credentials][:expires_at]
-      )
+    )
   end
 
   def get_game_nights

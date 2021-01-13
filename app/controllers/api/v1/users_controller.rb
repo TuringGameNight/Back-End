@@ -9,7 +9,8 @@ module Api
         if user.save
           render json: UserSerializer.new(user)
         else
-          render json: { message: 'unsuccessful', error: 'Could not find or create user' }, status: :unprocessable_entity
+          render json: { message: 'unsuccessful', error: 'Could not find or create user' },
+                 status: :unprocessable_entity
         end
       end
     end
