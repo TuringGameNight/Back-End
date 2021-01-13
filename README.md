@@ -47,7 +47,7 @@ $rails s
 
 ## Endpoints:
 
-### Users
+## Users
 
 #### Friends
 ```
@@ -121,9 +121,28 @@ DELETE /api/v1/users/{user_id}/games
 ```
 
 #### Game Nights
-- /api/v1/users/:id/game-nights -> Returns a list of a user's game nights
+```
+List all games nights a user is attending
 
-### Games
+GET /api/v1/users/{user_id}/game_nights
+```
+```json
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "user_game_night",
+            "attributes": {
+                "name": "Test Game Night",
+                "date": "09-21-2021",
+                "number_of_games": 2
+            }
+        }
+    ]
+}
+```
+
+## Games
 
 ```
 Search for a game. This search will return 20 results based on the name parameter.
@@ -158,7 +177,7 @@ Default response
 }
 ```
 
-### Game Nights
+## Game Nights
 
 ```
 Return information for a specific game night
