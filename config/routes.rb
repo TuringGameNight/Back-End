@@ -13,13 +13,14 @@ Rails.application.routes.draw do
         get :friends, to: 'users/friends#index'
         get :games, to: 'users/games#index'
         post :games, to: 'users/games#create'
+        patch :games, to: 'users/games#update'
         delete :games, to: 'users/games#destroy'
         get :game_nights, to: 'users/game_nights#index'
       end
 
       # Games crud
       resources :games, only: [:create]
-      resources :game_nights, only: %i[show create]
+      resources :game_nights, only: %i[show create update destroy]
       resources :invitations, only: [:update]
     end
   end

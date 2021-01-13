@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :game_night do
-    user { nil }
-    name { 'MyString' }
-    date { 'MyString' }
-    number_of_games { 1 }
+    user
+    name { Faker::Lorem.word }
+    date { Faker::Date.in_date_period }
+    number_of_games { 2 }
   end
 end

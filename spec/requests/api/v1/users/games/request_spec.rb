@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
-  describe 'GET /users/games' do
+  describe 'GET /users/{user_id}/games' do
     context 'when passed a user_id of a user with games' do
       it 'returns a list of user games' do
         user = create(:user)
@@ -63,7 +63,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
     end
   end
 
-  describe 'POST /users/games' do
+  describe 'POST /users/{user_id}/games' do
     context 'when the game exists' do
       it 'creates a user_game record' do
         user = create(:user)
@@ -121,7 +121,15 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
     end
   end
 
-  describe 'DELETE /users/games' do
+  describe 'PATCH /users/{user_id}/games' do
+    context 'when the game exists' do
+      it 'can update the game' do
+
+      end
+    end
+  end
+
+  describe 'DELETE /users/{user_id}/games' do
     context 'when the game exists' do
       it 'can delete a game from user shelf' do
         user = create(:user)
