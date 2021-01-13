@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Create Game Night' do
@@ -14,7 +16,7 @@ RSpec.describe 'Create Game Night' do
     UserGame.create(user_id: user1.id, game_id: game1.id)
     UserGame.create(user_id: user2.id, game_id: game2.id)
 
-    
+
     game_night_params = {
       user_id: user1.id,
       name: 'Friday Fun Night',

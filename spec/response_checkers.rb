@@ -73,7 +73,7 @@ module ResponseCheckers
     expect(user_gn_response[:data].first[:attributes][:number_of_games]).to eq(gn_1.number_of_games)
   end
 
-  def game_night_show_response_checker(game_night_data, game_night, user)
+  def game_night_show_response_checker(game_night_data, game_night)
     expect(game_night_data[:data]).to have_key(:id)
     expect(game_night_data[:data][:id]).to be_an(String)
 
@@ -90,15 +90,11 @@ module ResponseCheckers
     expect(game_night_data[:data][:attributes][:number_of_games]).to eq(game_night.number_of_games)
 
     expect(game_night_data[:data][:attributes]).to have_key(:games)
-    expect(game_night_data[:data][:attributes][:games].count).to eq(2)
 
-    expect(game_night_data[:data][:attributes]).to have_key(:attendees)
-    expect(game_night_data[:data][:attributes][:attendees].count).to eq(2)
-    expect(game_night_data[:data][:attributes][:attendees].first[:name]).to eq(user.name)
-    expect(game_night_data[:data][:attributes][:attendees].first[:email]).to eq(user.email)
-    expect(game_night_data[:data][:attributes][:attendees].first).not_to have_key(:google_token)
-    expect(game_night_data[:data][:attributes][:attendees].first).not_to have_key(:auth_token)
-    expect(game_night_data[:data][:attributes][:attendees].first).not_to have_key(:refresh_token)
-    expect(game_night_data[:data][:attributes][:attendees].first).not_to have_key(:google_id)
+    expect(game_night_data[:data][:attributes]).to have_key(:confirmed_attendees)
+    expect(game_night_data[:data][:attributes][:confirmed_attendees]).to be_an(Array)
+
+    expect(game_night_data[:data][:attributes]).to have_key(:pending_attendees)
+    expect(game_night_data[:data][:attributes][:pending_attendees]).to be_an(Array)
   end
 end

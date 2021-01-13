@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       # Games crud
       resources :games, only: [:create]
       resources :game_nights, only: %i[show create]
+      resources :invitations, only: [:update]
     end
   end
 end

@@ -29,10 +29,4 @@ class Api::V1::GameNightsController < ApplicationController
              status: :unprocessable_entity
     end
   end
-
-  private
-
-  def game_night_params
-    params.permit(:name, :user_id, :date, :number_of_games)
-  end
 end

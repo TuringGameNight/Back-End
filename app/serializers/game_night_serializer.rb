@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GameNightSerializer
   include FastJsonapi::ObjectSerializer
   attributes :name, :date, :number_of_games
@@ -8,9 +10,21 @@ class GameNightSerializer
     end
   end
 
-  attribute :attendees do |game_night|
-    game_night.attendees.map do |attendee|
+  # Need to figure out how to just send name and email.
+  attribute :confirmed_attendees do |game_night|
+    game_night.confirmed_attendees.map do |attendee|
       {
+        id: attendee.id,
+        name: attendee.name,
+        email: attendee.email
+      }
+    end
+  end
+
+  attribute :pending_attendees do |game_night|
+    game_night.pending_attendees.map do |attendee|
+      {
+        id: attendee.id,
         name: attendee.name,
         email: attendee.email
       }
