@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_12_022620) do
+ActiveRecord::Schema.define(version: 2021_01_13_211655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,12 +69,12 @@ ActiveRecord::Schema.define(version: 2021_01_12_022620) do
     t.string "google_id"
     t.string "name"
     t.string "image"
-    t.string "google_token"
     t.string "refresh_token"
     t.string "auth_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email"
+    t.integer "token_expiration"
   end
 
   add_foreign_key "friends", "users"
