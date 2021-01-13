@@ -10,7 +10,6 @@ module Api
         end
 
         def update
-          require "pry"; binding.pry
           friend = Friend.find_by(user_id: params["user_id"], bud_id: params["friend_id"])
           friend.status = "accepted"
           friend.save
