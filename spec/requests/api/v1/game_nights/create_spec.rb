@@ -16,18 +16,17 @@ RSpec.describe 'Create Game Night' do
     UserGame.create(user_id: user1.id, game_id: game1.id)
     UserGame.create(user_id: user2.id, game_id: game2.id)
 
-
     game_night_params = {
       user_id: user1.id,
       name: 'Friday Fun Night',
       date: '1/15/2021',
       number_of_games: 2,
-      friends: ["",user2.id.to_s]
+      friends: ['', user2.id.to_s]
     }
 
     headers = { 'CONTENT_TYPE' => 'application/json' }
 
-    post api_v1_game_nights_path,headers: headers, params: JSON.generate(game_night_params)
+    post api_v1_game_nights_path, headers: headers, params: JSON.generate(game_night_params)
 
     json_body = JSON.parse(response.body, symbolize_names: true)
 
@@ -57,7 +56,7 @@ RSpec.describe 'Create Game Night' do
       game_night_params = {
         user_id: user1.id,
         name: 'Friday Fun Night',
-        friends: [""]
+        friends: ['']
       }
 
       headers = { 'CONTENT_TYPE' => 'application/json' }
