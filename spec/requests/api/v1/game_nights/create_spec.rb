@@ -14,7 +14,7 @@ RSpec.describe 'Create Game Night' do
     UserGame.create(user_id: user1.id, game_id: game1.id)
     UserGame.create(user_id: user2.id, game_id: game2.id)
 
-    # json = File.read('fixtures/json_mocks/create_game_night.json')
+    
     game_night_params = {
       user_id: user1.id,
       name: 'Friday Fun Night',
