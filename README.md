@@ -55,11 +55,14 @@ GET http://localhost:3000/api/v1/users/1/friends
 
 Returns all friends of a user
 ```
-<img src="https://i.ibb.co/HpxcpVc/ghb-signin.png" alt="ghb-signin">
+<img src="https://i.ibb.co/4ZWHhBS/game-night-user-friends.png" alt="user-friends">
 
 #### Games
-`GET http://localhost:3000/api/v1/users/1/games`
+```
+GET http://localhost:3000/api/v1/users/1/games
+
 Returns all user games
+```
 <img src="https://i.ibb.co/T2btZzc/game-night-user-games.png" alt="user-games">
 
 #### Game Nights
