@@ -46,7 +46,7 @@ describe 'Friends endpoint', type: :request do
 
     post api_v1_user_friends_path(request)
 
-    results = JSON.parse(response.body, symbolize_names: true)[:data]
+    results = JSON.parse(response.body, symbolize_names: true)
 
     expect(results[:message]).to eq('unsuccessful')
   end
