@@ -89,7 +89,11 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
         game = create(:game)
 
         expect(User.all.first.games).to eq([])
-        post api_v1_user_games_path(user.id), params: { name: game.name }
+
+        body = {
+          name: game.name
+        }
+        post api_v1_user_games_path(user.id), params: body, as: :json
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
@@ -109,7 +113,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
           name: 'clue',
           description: 'The best game',
           duration: 90
-        }
+        }, as: :json
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
@@ -125,7 +129,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
 
         post api_v1_user_games_path(user.id), params: {
           name: 'clue'
-        }
+        }, as: :json
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
