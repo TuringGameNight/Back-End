@@ -17,11 +17,9 @@ Rails.application.routes.draw do
         get :game_nights, to: 'users/game_nights#index'
       end
 
+      post '/users/:id/friends', to: 'users/friends#create'
       patch '/users/:id/friends/:id', to: 'users/friends#update'
-      # namespace :users do
-      #   resources :friends, only: [:index, :update]
-      #   # patch "/friends/:id", to: 'users/friends#update'
-      # end
+
 
       # Games crud
       resources :games, only: [:create]
