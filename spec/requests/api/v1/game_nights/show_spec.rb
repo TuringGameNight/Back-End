@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'GET Game Night' do
@@ -38,7 +40,7 @@ RSpec.describe 'GET Game Night' do
     get "/api/v1/game_nights/#{game_night.id}"
 
     game_night_data = JSON.parse(response.body, symbolize_names: true)
-    game_night_show_response_checker(game_night_data, game_night, user1)
+    game_night_show_response_checker(game_night_data, game_night)
     expect(game_night_data[:data][:attributes][:games].count).to eq(2)
     expect(game_night_data[:data][:attributes][:confirmed_attendees].count).to eq(2)
     expect(game_night_data[:data][:attributes][:confirmed_attendees].first[:id]).to eq(user2.id)
@@ -75,7 +77,7 @@ RSpec.describe 'GET Game Night' do
 
     game_night_data = JSON.parse(response.body, symbolize_names: true)
 
-    game_night_show_response_checker(game_night_data, game_night, user1)
+    game_night_show_response_checker(game_night_data, game_night)
     expect(game_night_data[:data][:attributes][:games].count).to eq(1)
   end
 end
