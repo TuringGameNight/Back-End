@@ -17,6 +17,15 @@ module Api
           user = User.find(params["user_id"])
           render json: FriendsSerializer.new(user)
         end
+
+        def create
+          user = User.find(params[:id])
+          friend = User.find_by(email: params[:friend_email])
+
+          Friend.create(user_id: user.id, bud_id: friend.id)
+
+          render json: FriendsSerializer.new(user)
+        end
       end
     end
   end
