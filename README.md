@@ -47,22 +47,198 @@ $rails s
 
 ## Endpoints:
 
-### Users
+## Users
+
 #### Friends
-- /api/v1/users/:id/friends -> Returns a list of friends names and email addresses
-> ![image](https://user-images.githubusercontent.com/58994078/104082818-72842680-51f6-11eb-9143-85baaaa50e42.png)
+```
+List all friends for a specific user.
+
+GET /api/v1/users/{user_id}/friends
+```
+```json
+Default response
+
+{
+    "data": [
+        {
+            "id": "2",
+            "type": "friends",
+            "attributes": {
+                "name": "Austin",
+                "email": "Austin@example.com"
+            }
+        },
+        {
+            "id": "3",
+            "type": "friends",
+            "attributes": {
+                "name": "Phil",
+                "email": "Phil@example.com"
+            }
+        }
+    ]
+}
+```
+
 #### Games
-- /api/v1/users/:id/games -> Returns a list of a user's games
+```
+List all games for a specific user.
+
+GET /api/v1/users/{user_id}/games
+```
+```json
+Default response
+
+{
+    "data": [
+        {
+            "id": "2",
+            "type": "games",
+            "attributes": {
+                "name": "Pandemic",
+                "game_type": "Board/Strategy",
+                "description": "It is our life now",
+                "duration": 95,
+                "image": "IMAGE",
+                "num_players": "4",
+                "age_range": "15"
+            }
+        }
+    ]
+}
+```
+
+```
+Add a game to a users shelf.
+
+POST /api/v1/users/{user_id}/games
+```
+
+```
+Delete a game from a users shelf.
+
+DELETE /api/v1/users/{user_id}/games
+```
 
 #### Game Nights
-- /api/v1/users/:id/game-nights -> Returns a list of a user's game nights
+```
+List all games nights a user is attending
 
-### Games
-- /api/v1/games/find?name=chess -> Returns a list of games
-> ![image](https://user-images.githubusercontent.com/58994078/104083285-9a758900-51fa-11eb-820c-035d2a4ce459.png)
+GET /api/v1/users/{user_id}/game_nights
+```
+```json
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "user_game_night",
+            "attributes": {
+                "name": "Test Game Night",
+                "date": "09-21-2021",
+                "number_of_games": 2
+            }
+        }
+    ]
+}
+```
 
-### Game Nights
-- /api/v1/game_nights/1 -> Returns data on a game night
+## Games
+
+```
+Search for a game. This search will return 20 results based on the name parameter.
+
+GET /api/v1/games/find
+
+
+
+Parameter      Type        Description
+
+name           string      The name of the game you want to search for
+```
+```json
+Default response
+
+{
+    "data": [
+        {
+            "id": null,
+            "type": "board_game",
+            "attributes": {
+                "name": "Clue",
+                "description": "<p>The classic detective game! In <strong>Clue</strong>, players move from room to room in a mansion to solve the mystery of: who done it, with what, and where? Players are dealt character, weapon, and location cards after the top card from each card type is secretly placed in the confidential file in the middle of the board. Players must move to a room and then make an accusation against a character saying they did it in that room with a specific weapon. The player to the left must show one of any cards accused to the accuser if in that player's hand. Through deductive reasoning each player must figure out which character, weapon, and location are in the secret file. To do this, each player must uncover what cards are in other players hands by making more and more accusations. Once a player knows what cards the other players are holding, they will know what cards are in the secret file. A great game for those who enjoy reasoning and thinking things out.</p>",
+                "age_range": "8+",
+                "duration": 60,
+                "image": "https://s3-us-west-1.amazonaws.com/5cc.images/games/uploaded/1559254847936-611WyTryCvL.jpg",
+                "num_players": "3-6",
+                "game_type": "Deduction, Family Game"
+            }
+        }
+    ]
+}
+```
+
+## Game Nights
+
+```
+Return information for a specific game night
+
+GET /api/v1/game_nights/{game_night_id}
+```
+```json
+Default response
+
+{
+    "data": {
+        "id": "1",
+        "type": "game_night",
+        "attributes": {
+            "name": "Test Game Night",
+            "date": "09-21-2021",
+            "number_of_games": 2,
+            "games": [
+                {
+                    "id": 1,
+                    "name": "Chess",
+                    "game_type": "Board/Strategy",
+                    "description": "Timeless",
+                    "duration": 15,
+                    "image": "Knight",
+                    "created_at": "2021-01-13T00:02:09.366Z",
+                    "updated_at": "2021-01-13T00:02:09.366Z",
+                    "num_players": "2",
+                    "age_range": "6"
+                },
+                {
+                    "id": 2,
+                    "name": "Pandemic",
+                    "game_type": "Board/Strategy",
+                    "description": "It is our life now",
+                    "duration": 95,
+                    "image": "IMAGE",
+                    "created_at": "2021-01-13T00:02:09.369Z",
+                    "updated_at": "2021-01-13T00:02:09.369Z",
+                    "num_players": "4",
+                    "age_range": "15"
+                }
+            ],
+            "attendees": [
+                {
+                    "name": "Austin",
+                    "email": "Austin@example.com"
+                },
+                {
+                    "name": "Phil",
+                    "email": "Phil@example.com"
+                },
+                {
+                    "name": "Kate",
+                    "email": "Kate@example.com"
+                }
+            ]
+        }
+    }
+}
+```
 
 ## Project Leads
 
