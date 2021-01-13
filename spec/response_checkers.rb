@@ -97,4 +97,70 @@ module ResponseCheckers
     expect(game_night_data[:data][:attributes]).to have_key(:pending_attendees)
     expect(game_night_data[:data][:attributes][:pending_attendees]).to be_an(Array)
   end
+
+  def game_search_response_checker(game_response, game)
+    expect(game_response).to have_key(:id)
+    expect(game_response[:id]).to be_an(String)
+    expect(game_response[:attributes]).to have_key(:name)
+    expect(game_response[:attributes][:name]).to be_a(String)
+    expect(game_response[:attributes][:name]).to eq(game.name)
+    expect(game_response[:attributes]).to have_key(:game_type)
+    expect(game_response[:attributes][:game_type]).to be_a(String)
+    expect(game_response[:attributes][:game_type]).to eq(game.game_type)
+    expect(game_response[:attributes]).to have_key(:description)
+    expect(game_response[:attributes][:description]).to be_a(String)
+    expect(game_response[:attributes][:description]).to eq(game.description)
+    expect(game_response[:attributes]).to have_key(:duration)
+    expect(game_response[:attributes][:duration]).to be_a(Integer)
+    expect(game_response[:attributes][:duration]).to eq(game.duration)
+    expect(game_response[:attributes]).to have_key(:image)
+    expect(game_response[:attributes][:image]).to be_a(String)
+    expect(game_response[:attributes][:image]).to eq(game.image)
+    expect(game_response[:attributes]).to have_key(:num_players)
+    expect(game_response[:attributes][:num_players]).to be_a(String)
+    expect(game_response[:attributes][:num_players]).to eq(game.num_players)
+    expect(game_response[:attributes]).to have_key(:age_range)
+    expect(game_response[:attributes][:age_range]).to be_a(String)
+    expect(game_response[:attributes][:age_range]).to eq(game.age_range)
+  end
+
+  def game_sinatra_response_checker(game_response)
+    expect(game_response[:attributes]).to have_key(:name)
+    expect(game_response[:attributes][:name]).to be_a(String)
+    expect(game_response[:attributes]).to have_key(:game_type)
+    expect(game_response[:game_type]).to be_a(String) if game_response[:game_type]
+    expect(game_response[:attributes]).to have_key(:description)
+    expect(game_response[:attributes][:description]).to be_a(String)
+    expect(game_response[:attributes]).to have_key(:duration)
+    expect(game_response[:attributes][:duration]).to be_a(Integer) if game_response[:attributes][:duration]
+    expect(game_response[:attributes]).to have_key(:image)
+    expect(game_response[:attributes][:image]).to be_a(String)
+    expect(game_response[:attributes]).to have_key(:num_players)
+    expect(game_response[:attributes][:num_players]).to be_a(String) if game_response[:attributes][:num_players]
+    expect(game_response[:attributes]).to have_key(:age_range)
+    expect(game_response[:attributes][:age_range]).to be_a(String) if game_response[:attributes][:age_range]
+  end
+
+  def user_games_list_response_checker(item)
+    expect(item[:attributes]).to have_key(:name)
+    expect(item[:attributes][:name]).to be_a(String)
+
+    expect(item[:attributes]).to have_key(:game_type)
+    expect(item[:attributes][:game_type]).to be_a(String)
+
+    expect(item[:attributes]).to have_key(:description)
+    expect(item[:attributes][:description]).to be_a(String)
+
+    expect(item[:attributes]).to have_key(:duration)
+    expect(item[:attributes][:duration]).to be_a(Integer)
+
+    expect(item[:attributes]).to have_key(:image)
+    expect(item[:attributes][:image]).to be_a(String)
+
+    expect(item[:attributes]).to have_key(:num_players)
+    expect(item[:attributes][:num_players]).to be_a(String)
+
+    expect(item[:attributes]).to have_key(:age_range)
+    expect(item[:attributes][:age_range]).to be_a(String)
+  end
 end

@@ -26,26 +26,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
         expect(json_body[:data][0][:attributes]).to be_a(Hash)
 
         json_body[:data].each do |item|
-          expect(item[:attributes]).to have_key(:name)
-          expect(item[:attributes][:name]).to be_a(String)
-
-          expect(item[:attributes]).to have_key(:game_type)
-          expect(item[:attributes][:game_type]).to be_a(String)
-
-          expect(item[:attributes]).to have_key(:description)
-          expect(item[:attributes][:description]).to be_a(String)
-
-          expect(item[:attributes]).to have_key(:duration)
-          expect(item[:attributes][:duration]).to be_a(Integer)
-
-          expect(item[:attributes]).to have_key(:image)
-          expect(item[:attributes][:image]).to be_a(String)
-
-          expect(item[:attributes]).to have_key(:num_players)
-          expect(item[:attributes][:num_players]).to be_a(String)
-
-          expect(item[:attributes]).to have_key(:age_range)
-          expect(item[:attributes][:age_range]).to be_a(String)
+          user_games_list_response_checker(item)
         end
       end
     end
@@ -89,7 +70,11 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
         game = create(:game)
 
         expect(User.all.first.games).to eq([])
-        post api_v1_user_games_path(user.id), params: { name: game.name }
+
+        body = {
+          name: game.name
+        }
+        post api_v1_user_games_path(user.id), params: body, as: :json
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
@@ -109,7 +94,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
           name: 'clue',
           description: 'The best game',
           duration: 90
-        }
+        }, as: :json
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
@@ -125,7 +110,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
 
         post api_v1_user_games_path(user.id), params: {
           name: 'clue'
-        }
+        }, as: :json
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
