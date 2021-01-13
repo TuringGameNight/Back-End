@@ -18,22 +18,7 @@ describe 'searches for a game before hitting the API', type: :request do
 
     games = JSON.parse(response.body, symbolize_names: true)[:data]
     games.each do |game|
-      expect(game).to have_key(:id)
-      expect(game[:id]).to be_an(String)
-      expect(game[:attributes]).to have_key(:name)
-      expect(game[:attributes][:name]).to be_a(String)
-      expect(game[:attributes]).to have_key(:game_type)
-      expect(game[:attributes][:game_type]).to be_a(String)
-      expect(game[:attributes]).to have_key(:description)
-      expect(game[:attributes][:description]).to be_a(String)
-      expect(game[:attributes]).to have_key(:duration)
-      expect(game[:attributes][:duration]).to be_a(Integer)
-      expect(game[:attributes]).to have_key(:image)
-      expect(game[:attributes][:image]).to be_a(String)
-      expect(game[:attributes]).to have_key(:num_players)
-      expect(game[:attributes][:num_players]).to be_a(String)
-      expect(game[:attributes]).to have_key(:age_range)
-      expect(game[:attributes][:age_range]).to be_a(String)
+      game_search_response_checker(game, chess)
     end
   end
 
@@ -46,20 +31,7 @@ describe 'searches for a game before hitting the API', type: :request do
       expect(response.status).to eq(200)
       games = JSON.parse(response.body, symbolize_names: true)[:data]
       games.each do |game|
-        expect(game[:attributes]).to have_key(:name)
-        expect(game[:attributes][:name]).to be_a(String)
-        expect(game[:attributes]).to have_key(:game_type)
-        expect(game[:game_type]).to be_a(String) if game[:game_type]
-        expect(game[:attributes]).to have_key(:description)
-        expect(game[:attributes][:description]).to be_a(String)
-        expect(game[:attributes]).to have_key(:duration)
-        expect(game[:attributes][:duration]).to be_a(Integer) if game[:attributes][:duration]
-        expect(game[:attributes]).to have_key(:image)
-        expect(game[:attributes][:image]).to be_a(String)
-        expect(game[:attributes]).to have_key(:num_players)
-        expect(game[:attributes][:num_players]).to be_a(String) if game[:attributes][:num_players]
-        expect(game[:attributes]).to have_key(:age_range)
-        expect(game[:attributes][:age_range]).to be_a(String) if game[:attributes][:age_range]
+        game_sinatra_response_checker(game)
       end
     end
   end
