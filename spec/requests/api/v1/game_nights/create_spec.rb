@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Create Game Night' do
@@ -51,7 +53,7 @@ RSpec.describe 'Create Game Night' do
 
       game_night_params = {
         user_id: user1.id,
-        name: 'Friday Fun Night',
+        name: 'Friday Fun Night'
       }
 
       post api_v1_game_nights_path, params: game_night_params

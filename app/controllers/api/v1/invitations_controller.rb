@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class InvitationsController < ApplicationController
-
       def update
         Invitation.update(invitation_params)
         render json: { message: 'success' }, status: :accepted

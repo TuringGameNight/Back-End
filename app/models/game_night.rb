@@ -26,7 +26,7 @@ class GameNight < ApplicationRecord
   end
 
   def games_to_play
-    users = confirmed_attendees.map { |user| user.id }
+    users = confirmed_attendees.map(&:id)
     Game.joins(:users).where(User.arel_table[:id].in(users)).distinct
   end
 end

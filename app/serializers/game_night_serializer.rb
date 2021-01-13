@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GameNightSerializer
   include FastJsonapi::ObjectSerializer
   attributes :name, :date, :number_of_games
