@@ -14,14 +14,15 @@ describe 'Friends endpoint', type: :request do
 
     expect(response).to be_successful
 
-    friends = JSON.parse(response.body, symbolize_names: true)[:data]
+    friends = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:pending_friends]
+
     friends.each do |friend|
       expect(friend).to have_key(:id)
-      expect(friend[:id]).to be_an(String)
-      expect(friend[:attributes]).to have_key(:name)
-      expect(friend[:attributes][:name]).to be_a(String)
-      expect(friend[:attributes]).to have_key(:email)
-      expect(friend[:attributes][:email]).to be_a(String)
+      expect(friend[:id]).to be_an(Integer)
+      expect(friend).to have_key(:name)
+      expect(friend[:name]).to be_a(String)
+      expect(friend).to have_key(:email)
+      expect(friend[:email]).to be_a(String)
     end
   end
 
@@ -31,6 +32,7 @@ describe 'Friends endpoint', type: :request do
     expect(response).to be_successful
 
     friends = JSON.parse(response.body, symbolize_names: true)[:data]
-    expect(friends).to eq([])
+    expect(friends[:attributes][:accepted_friends]).to eq([])
+    expect(friends[:attributes][:pending_friends]).to eq([])
   end
 end
