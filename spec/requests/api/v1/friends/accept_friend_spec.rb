@@ -30,8 +30,8 @@ describe 'Friend request accept', type: :request do
     expect(friends_data[:data][:attributes][:accepted_friends][0][:name]).to eq(user_2.name)
     expect(friends_data[:data][:attributes][:accepted_friends][0][:id]).to eq(user_2.id)
     expect(friends_data[:data][:attributes][:accepted_friends][0][:email]).to eq(user_2.email)
-    expect(friends_data[:data][:attributes][:accepted_friends][0][:name]).to eq(user_3.name)
-    expect(friends_data[:data][:attributes][:accepted_friends][0][:id]).to eq(user_3.id)
-    expect(friends_data[:data][:attributes][:accepted_friends][0][:email]).to eq(user_3.email)
+    expect(friends_data[:data][:attributes][:pending_friends][0][:name]).to eq(user_3.name)
+    expect(friends_data[:data][:attributes][:pending_friends][0][:id]).to eq(user_3.id)
+    expect(friends_data[:data][:attributes][:pending_friends][0][:email]).to eq(user_3.email)
   end
 end
