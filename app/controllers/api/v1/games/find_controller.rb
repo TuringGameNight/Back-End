@@ -1,6 +1,6 @@
 class Api::V1::Games::FindController < ApplicationController
   def index
-    game_name = params[:name]
+    game_name = params[:search]
     if Game.find_game_db(game_name).empty?
       render json: SearchFacade.find_games_by_name(game_name)
     else
