@@ -48,11 +48,16 @@ $rails s
 ## Endpoints:
 
 ### Users
+
 #### Friends
-- /api/v1/users/:id/friends -> Returns a list of friends names and email addresses
-> ![image](https://user-images.githubusercontent.com/58994078/104082818-72842680-51f6-11eb-9143-85baaaa50e42.png)
+`GET http://localhost:3000/api/v1/users/1/friends`
+Returns all friends of a user
+<img src="https://i.ibb.co/HpxcpVc/ghb-signin.png" alt="ghb-signin">
+
 #### Games
-- /api/v1/users/:id/games -> Returns a list of a user's games
+`GET http://localhost:3000/api/v1/users/1/games`
+Returns all user games
+<img src="https://i.ibb.co/T2btZzc/game-night-user-games.png" alt="user-games">
 
 #### Game Nights
 - /api/v1/users/:id/game-nights -> Returns a list of a user's game nights
