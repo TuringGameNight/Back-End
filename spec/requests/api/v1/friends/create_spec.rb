@@ -15,9 +15,9 @@ describe 'Friends endpoint', type: :request do
     friends = JSON.parse(response.body, symbolize_names: true)[:data]
 
     expect(response).to be_successful
-    expect(friend[:attributes][:pending_friends][0][:name]).to eq(user_2.name)
-    expect(friend[:attributes][:pending_friends][0][:id]).to eq(user_2.name)
-    expect(friend[:attributes][:pending_friends][0][:email]).to eq(user_2.name)
+    expect(friends[:attributes][:pending_friends][0][:name]).to eq(user_2.name)
+    expect(friends[:attributes][:pending_friends][0][:id]).to eq(user_2.id)
+    expect(friends[:attributes][:pending_friends][0][:email]).to eq(user_2.email)
   end
 
   it 'does not create a friendship if that user is not in the database' do
