@@ -18,7 +18,7 @@ class Api::V1::GameNightsController < ApplicationController
     # # how can we do stronger params here?
     # game_night = GameNight.new(game_night_params)
 
-    if game_night.save && json[:friends].count.positive?
+    if json[:friends].count.positive? && game_night.save
       json[:friends].each do |friend_id|
         Invitation.create!(game_night_id: game_night.id, user_id: friend_id, status: 'pending')
       end
