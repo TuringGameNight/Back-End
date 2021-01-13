@@ -16,15 +16,20 @@ describe 'Friend request accept/decline', type: :request do
     expect(response).to be_successful
 
     friends_data = JSON.parse(response.body, symbolize_names: true)
-    friends = friends_data[:data].first
-    friends[:attributes][:status] = "accepted"
+    friend_id = friends_data[:data][:attributes][:pending_friends][0][:id]
+    pending_friend = ({
+                      user_id: user_1.id,
+                      friend_id: user_2.id,
+                      status: "accepted"
+                     })
 
-    patch "/api/v1/users/#{user_1.id}/friends/#{friends[:id]}", headers: headers, params: JSON.generate(friends)
+    patch "/api/v1/users/#{user_1.id}/friends/#{friend_id}", headers: headers, params: JSON.generate(pending_friend)
 
     friends_data = JSON.parse(response.body, symbolize_names: true)
-    friends = friends_data[:data].first
 
     expect(response).to be_successful
-    expect(friends[:status]).to eq('accepted')
+    expect(friends_data[:data][:attributes][:accepted_friends][0][:name]).to eq(user_2.name)
+    expect(friends_data[:data][:attributes][:accepted_friends][0][:id]).to eq(user_2.id)
+    expect(friends_data[:data][:attributes][:accepted_friends][0][:email]).to eq(user_2.email)
   end
 end
