@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Create Game Night' do
   it 'creates game night from request and responds with appropriate data' do
-    user1 = create :user
+    user1 = create(:user, id: 200)
     user2 = create :user
 
     Friend.create(user_id: user1.id, bud_id: user2.id)
@@ -14,15 +14,18 @@ RSpec.describe 'Create Game Night' do
     UserGame.create(user_id: user1.id, game_id: game1.id)
     UserGame.create(user_id: user2.id, game_id: game2.id)
 
+    # json = File.read('fixtures/json_mocks/create_game_night.json')
     game_night_params = {
       user_id: user1.id,
       name: 'Friday Fun Night',
       date: '1/15/2021',
       number_of_games: 2,
-      friends: [user2.id.to_s]
+      friends: ["",user2.id.to_s]
     }
 
-    post api_v1_game_nights_path, params: game_night_params
+    headers = { 'CONTENT_TYPE' => 'application/json' }
+
+    post api_v1_game_nights_path,headers: headers, params: JSON.generate(game_night_params)
 
     json_body = JSON.parse(response.body, symbolize_names: true)
 
@@ -52,9 +55,11 @@ RSpec.describe 'Create Game Night' do
       game_night_params = {
         user_id: user1.id,
         name: 'Friday Fun Night',
+        friends: [""]
       }
 
-      post api_v1_game_nights_path, params: game_night_params
+      headers = { 'CONTENT_TYPE' => 'application/json' }
+      post api_v1_game_nights_path, params: JSON.generate(game_night_params)
 
       json_body = JSON.parse(response.body, symbolize_names: true)
 
