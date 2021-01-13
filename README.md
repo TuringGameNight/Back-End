@@ -51,9 +51,9 @@ $rails s
 
 #### Friends
 ```
-GET http://localhost:3000/api/v1/users/1/friends
+List all friends for a specific user.
 
-Returns all friends of a user
+GET /api/v1/users/{user_id}/friends
 ```
 ```json
 {
@@ -77,22 +77,59 @@ Returns all friends of a user
     ]
 }
 ```
-<img src="https://i.ibb.co/4ZWHhBS/game-night-user-friends.png" alt="user-friends">
 
 #### Games
 ```
-GET http://localhost:3000/api/v1/users/1/games
+List all games for a specific user.
 
-Returns all user games
+GET /api/v1/users/{user_id}/games
 ```
-<img src="https://i.ibb.co/T2btZzc/game-night-user-games.png" alt="user-games">
+```json
+{
+    "data": [
+        {
+            "id": "2",
+            "type": "games",
+            "attributes": {
+                "name": "Pandemic",
+                "game_type": "Board/Strategy",
+                "description": "It is our life now",
+                "duration": 95,
+                "image": "IMAGE",
+                "num_players": "4",
+                "age_range": "15"
+            }
+        }
+    ]
+}
+```
+
+```
+Add a game to a users shelf.
+
+POST /api/v1/users/{user_id}/games
+```
+
+```
+Delete a game from a users shelf.
+
+DELETE /api/v1/users/{user_id}/games
+```
 
 #### Game Nights
 - /api/v1/users/:id/game-nights -> Returns a list of a user's game nights
 
 ### Games
-- /api/v1/games/find?name=chess -> Returns a list of games
-> ![image](https://user-images.githubusercontent.com/58994078/104083285-9a758900-51fa-11eb-820c-035d2a4ce459.png)
+
+```
+Search for a game. This search will return 20 results based on the name parameter.
+
+GET /api/v1/games/find
+
+Parameter      Type        Description
+
+name           string      The name of the game you want to search for
+```
 
 ### Game Nights
 - /api/v1/game_nights/1 -> Returns data on a game night
