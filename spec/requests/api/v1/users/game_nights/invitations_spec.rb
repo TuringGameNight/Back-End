@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Invitations' do
-  it "can update an invitation status to accepted" do
+  it 'can update an invitation status to accepted' do
     user1 = create :user
     user2 = create :user
 
@@ -44,7 +46,7 @@ RSpec.describe 'Invitations' do
     expect(game_night.confirmed_attendees).to eq([user2, user1])
   end
 
-  it "can update an invitation status to declined" do
+  it 'can update an invitation status to declined' do
     user1 = create :user
     user2 = create :user
 
