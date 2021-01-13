@@ -39,6 +39,8 @@ RSpec.describe 'Invitations' do
 
     json = JSON.parse(response.body, symbolize_names: true)
 
+    expect(json[:message]).to eq('success')
+
     expect(response.status).to eq(202)
 
     expect(user2.invitations.first.status).to eq('accepted')
@@ -82,6 +84,7 @@ RSpec.describe 'Invitations' do
 
     json = JSON.parse(response.body, symbolize_names: true)
 
+    expect(json[:message]).to eq('success')
     expect(response.status).to eq(202)
 
     expect(user2.invitations.first.status).to eq('declined')
@@ -124,7 +127,8 @@ RSpec.describe 'Invitations' do
     patch "/api/v1/invitations/#{invitation.id}", params: invite_data
 
     json = JSON.parse(response.body, symbolize_names: true)
-
+    expect(json[:message]).to eq('unsuccessful')
+    expect(json[:error]).to eq('Could not update invitation status')
     expect(response.status).to eq(422)
 
     expect(user2.invitations.first.status).to eq('pending')
