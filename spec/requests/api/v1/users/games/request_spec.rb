@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
-  describe 'GET /users/games' do
+  describe 'GET /users/{user_id}/games' do
     context 'when passed a user_id of a user with games' do
       it 'returns a list of user games' do
         user = create(:user)
@@ -63,7 +63,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
     end
   end
 
-  describe 'POST /users/games' do
+  describe 'POST /users/{user_id}/games' do
     context 'when the game exists' do
       it 'creates a user_game record' do
         user = create(:user)
@@ -121,7 +121,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
     end
   end
 
-  describe 'DELETE /users/games' do
+  describe 'DELETE /users/{user_id}/games' do
     context 'when the game exists' do
       it 'can delete a game from user shelf' do
         user = create(:user)
@@ -130,7 +130,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
 
         expect(UserGame.all.first).to eq(user_game)
 
-        delete api_v1_user_games_path(user.id), params: { game_id: game.id }
+        delete "/api/v1/users/#{user.id}/games/#{game.id}"
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
@@ -143,7 +143,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
       it 'returns unsuccessful flash from json error' do
         user = create(:user)
 
-        delete api_v1_user_games_path(user.id)
+        delete "/api/v1/users/#{user.id}/games/80000"
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
