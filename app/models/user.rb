@@ -32,7 +32,7 @@ class User < ApplicationRecord
   def get_accepted_buds
     bud_ids = User.joins(:friends)
                   .where("friends.user_id": id,
-                        "friends.status": 'accepted')
+                         "friends.status": 'accepted')
                   .pluck('friends.bud_id')
 
     bud_ids.map do |bud_id|
@@ -43,7 +43,7 @@ class User < ApplicationRecord
   def get_pending_buds
     bud_ids = User.joins(:friends)
                   .where("friends.user_id": id,
-                          "friends.status": 'pending')
+                         "friends.status": 'pending')
                   .pluck('friends.bud_id')
 
     bud_ids.map do |bud_id|
