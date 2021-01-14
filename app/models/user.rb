@@ -29,6 +29,10 @@ class User < ApplicationRecord
     attendee_gns + game_nights
   end
 
+  def get_pending_invitations
+    Invitation.where(user_id: id, status: 'pending')
+  end
+
   def get_accepted_buds
     bud_ids = User.joins(:friends)
                   .where("friends.user_id": id,

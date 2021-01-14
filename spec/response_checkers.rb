@@ -33,15 +33,6 @@ module ResponseCheckers
     expect(user_response[:data][:attributes]).to have_key(:image)
     expect(user_response[:data][:attributes][:image]).to be_a(String)
     expect(user_response[:data][:attributes][:image]).to eq(user.image)
-
-    expect(user_response[:data][:attributes]).to have_key(:buds)
-    expect(user_response[:data][:attributes][:buds]).to be_a(Array)
-
-    expect(user_response[:data][:attributes]).to have_key(:games)
-    expect(user_response[:data][:attributes][:games]).to be_a(Array)
-
-    expect(user_response[:data][:attributes]).to have_key(:game_nights)
-    expect(user_response[:data][:attributes][:game_nights]).to be_a(Array)
   end
 
   def user_game_nights_response_checker(user_gn_response, gn_1)
@@ -162,5 +153,55 @@ module ResponseCheckers
 
     expect(item[:attributes]).to have_key(:age_range)
     expect(item[:attributes][:age_range]).to be_a(String)
+  end
+
+  def invitations_response_checker(invitations, user_invitations)
+    expect(invitations).to be_a(Array)
+    unless invitations.empty?
+      invitations.each_with_index do |invitation, index|
+        expect(invitation).to be_a(Hash)
+
+        expect(invitation).to have_key(:id)
+        expect(invitation[:id]).to eq(user_invitations[index].id.to_s)
+
+        expect(invitation).to have_key(:type)
+        expect(invitation[:type]).to be_a(String)
+        expect(invitation[:type]).to eq(user_invitations[index].class.to_s.downcase)
+
+        expect(invitation).to have_key(:attributes)
+        expect(invitation[:attributes]).to be_a(Hash)
+
+        expect(invitation[:attributes]).to have_key(:id)
+        expect(invitation[:attributes][:id]).to be_an(Integer)
+        expect(invitation[:attributes][:id]).to eq(user_invitations[index].id)
+
+        expect(invitation[:attributes]).to have_key(:game_night)
+        expect(invitation[:attributes][:game_night]).to be_a(Hash)
+
+        expect(invitation[:attributes][:game_night]).to have_key(:game_night_id)
+        expect(invitation[:attributes][:game_night][:game_night_id]).to be_an(Integer)
+        expect(invitation[:attributes][:game_night][:game_night_id]).to eq(user_invitations[index].game_night.id)
+
+        expect(invitation[:attributes][:game_night]).to have_key(:name)
+        expect(invitation[:attributes][:game_night][:name]).to be_an(String)
+        expect(invitation[:attributes][:game_night][:name]).to eq(user_invitations[index].game_night.name)
+
+        expect(invitation[:attributes][:game_night]).to have_key(:date)
+        expect(invitation[:attributes][:game_night][:date]).to be_an(String)
+        expect(invitation[:attributes][:game_night][:date]).to eq(user_invitations[index].game_night.date)
+
+        expect(invitation[:attributes][:game_night]).to have_key(:number_of_games)
+        expect(invitation[:attributes][:game_night][:number_of_games]).to be_an(Integer)
+        expect(invitation[:attributes][:game_night][:number_of_games]).to eq(user_invitations[index].game_night.number_of_games)
+
+        expect(invitation[:attributes][:game_night]).to have_key(:host)
+        expect(invitation[:attributes][:game_night][:host]).to be_an(String)
+        expect(invitation[:attributes][:game_night][:host]).to eq(user_invitations[index].game_night.user.name)
+
+        expect(invitation[:attributes][:game_night]).to have_key(:host_id)
+        expect(invitation[:attributes][:game_night][:host_id]).to be_an(Integer)
+        expect(invitation[:attributes][:game_night][:host_id]).to eq(user_invitations[index].game_night.user_id)
+      end
+    end
   end
 end
