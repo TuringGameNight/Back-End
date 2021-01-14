@@ -14,9 +14,10 @@ Rails.application.routes.draw do
           resources :friends, only: [:index, :destroy]
           resources :games, only: [:index, :create, :destroy]
           resources :game_nights, only: [:index]
-          get :invitations, only: [index]
         end
-        end
+        get :game_nights, to: 'users/game_nights#index'
+        get :invitations, to: 'users/invitations#index'
+      end
 
       # Games crud
       resources :games, only: [:create]
