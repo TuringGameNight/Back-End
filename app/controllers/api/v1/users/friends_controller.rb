@@ -6,7 +6,15 @@ module Api
       class FriendsController < ApplicationController
         def index
           user = User.find(params[:user_id])
-          render json: FriendsSerializer.new(user.buds)
+          render json: FriendsSerializer.new(user)
+        end
+
+        def update
+          render json: FriendsFacade.accept_friendship(params[:user_id], params[:friend_id])
+        end
+
+        def create
+          render json: FriendsFacade.create_friendship(params[:user_id], params[:friend_email])
         end
 
         def destroy
