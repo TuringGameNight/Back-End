@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       # User crud
       resources :users, only: [:create] do
         scope module: :users do
-          resources :friends, only: [:index, :destroy]
+          resources :friends, only: %i[index create update destroy]
           resources :games, only: [:index, :create, :destroy]
           resources :game_nights, only: [:index]
         end
