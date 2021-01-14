@@ -8,6 +8,13 @@ module Api
           user = User.find(params[:user_id])
           render json: FriendsSerializer.new(user.buds)
         end
+
+        def destroy
+          friendship = Friend.find(params[:id])
+          friendship.delete
+
+          render json: { message: 'success' }
+        end
       end
     end
   end
