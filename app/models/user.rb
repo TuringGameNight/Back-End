@@ -28,4 +28,8 @@ class User < ApplicationRecord
     attendee_gns = GameNight.joins(:invitations).where(invitations: { user_id: id })
     attendee_gns + game_nights
   end
+
+  def get_pending_invitations
+    Invitation.where(user_id: self.id, status: 'pending')
+  end
 end
