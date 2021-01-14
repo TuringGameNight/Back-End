@@ -9,8 +9,7 @@
   - [How to Install](#how-to-install)
   - [Testing](#testing)
   - [Endpoints](#endpoints)
-  - [Project Leads](#project-leads)
-  - [Acknowledgments](#acknowledgments)
+  - [Contributors](#contributors)
   
 ## What It Does
 
@@ -240,7 +239,7 @@ Default response
 }
 ```
 
-## Project Leads
+## Contributors
 
 - Austin Aspaas
 - Eduardo Parra
@@ -250,6 +249,4 @@ Default response
 - Kate Tester
 - Philip DeFraties
 - Shaunda Cunningham
-- Taylor Phillips
-
-## Acknowledgments
+- Taylor Phillips [GitHub](https://github.com/taphill) [LinkedIn](https://www.linkedin.com/in/taphill/)
