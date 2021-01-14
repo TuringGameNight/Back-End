@@ -241,12 +241,13 @@ Default response
 
 ## Contributors
 
-Austin Aspaas
-Eduardo Parra
-Garrett Cottrell
-Grant Dempsey
-Greg Mitchell
-Kate Tester
-Philip DeFraties
-Shaunda Cunningham
-Taylor Phillips -> [GitHub](https://github.com/taphill) & [LinkedIn](https://www.linkedin.com/in/taphill/)
+- Austin Aspaas
+- Shaun James [GitHub](https://github.com/ShaunDaneJames) & [LinkedIn](https://www.linkedin.com/in/shaun-james-2707a61bb/)
+- Eduardo Parra [GitHub](https://github.com/helloeduardo) & [LinkedIn](https://www.linkedin.com/in/eduardo--parra/)
+- Garrett Cottrell
+- Grant Dempsey
+- Greg Mitchell
+- Kate Tester
+- Philip DeFraties
+- Shaunda Cunningham
+- Taylor Phillips [GitHub](https://github.com/taphill) & [LinkedIn](https://www.linkedin.com/in/taphill/)
