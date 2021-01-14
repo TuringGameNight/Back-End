@@ -33,30 +33,30 @@ module Api
                  status: :unprocessable_entity
         end
       end
+
+      def update
+        game_night = GameNight.find(params[:id])
+
+        if game_night.update(update_params)
+          render json: { message: 'success' }
+        else
+          render json: { message: 'unsuccessful', error: game_night.errors.full_messages.to_sentence.to_s },
+                 status: :unprocessable_entity
+        end
+      end
+
+      def destroy
+        game_night = GameNight.find(params[:id])
+        game_night.destroy
+
+        render json: { message: 'success' }
+      end
+
+      private
+
+      def update_params
+        JSON.parse(request.body.string, symbolize_names: true)
+      end
     end
-  end
-
-  def update
-    game_night = GameNight.find(params[:id])
-
-    if game_night.update(update_params)
-      render json: { message: 'success' }
-    else
-      render json: { message: 'unsuccessful', error: game_night.errors.full_messages.to_sentence.to_s },
-             status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    game_night = GameNight.find(params[:id])
-    game_night.destroy
-
-    render json: { message: 'success' }
-  end
-
-  private
-
-  def update_params
-    JSON.parse(request.body.string, symbolize_names: true)
   end
 end
