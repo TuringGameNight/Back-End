@@ -157,7 +157,7 @@ module ResponseCheckers
 
   def invitations_response_checker(invitations, user_invitations)
     expect(invitations).to be_a(Array)
-    if !invitations.empty?
+    unless invitations.empty?
       invitations.each_with_index do |invitation, index|
         expect(invitation).to be_a(Hash)
 
