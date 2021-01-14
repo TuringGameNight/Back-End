@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       end
 
       # User crud
+
       resources :users do
         get :friends, to: 'users/friends#index'
         get :games, to: 'users/games#index'
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
 
       # Games crud
       resources :games, only: [:create]
-      resources :game_nights, only: %i[show create]
+      resources :game_nights, only: %i[show create update destroy]
       resources :invitations, only: [:update]
     end
   end
