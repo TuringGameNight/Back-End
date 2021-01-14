@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Game Night Invitations' do
-  before :each do
+  before do
     @user_1 = create :user
     @user_2 = create :user
     @user_3 = create :user
@@ -61,8 +61,8 @@ RSpec.describe 'Game Night Invitations' do
       game_night_id: @game_night_3.id
     )
   end
-  it "it returns a list of pending game night invitations for a user" do
 
+  it 'returns a list of pending game night invitations for a user' do
     get "/api/v1/users/#{@user_2.id}/invitations"
 
     json = JSON.parse(response.body, symbolize_names: true)
@@ -73,8 +73,7 @@ RSpec.describe 'Game Night Invitations' do
     invitations_response_checker(json[:data], @user_2.get_pending_invitations)
   end
 
-  it "it returns an empty response if the user has no invites" do
-
+  it 'returns an empty response if the user has no invites' do
     get "/api/v1/users/#{@user_4.id}/invitations"
 
     json = JSON.parse(response.body, symbolize_names: true)

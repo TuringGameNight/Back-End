@@ -9,6 +9,7 @@ module Api
           invitations = user.get_pending_invitations
           render json: InvitationSerializer.new(invitations)
         end
+
         private
 
         def invitation_params

@@ -30,6 +30,6 @@ class User < ApplicationRecord
   end
 
   def get_pending_invitations
-    Invitation.where(user_id: self.id, status: 'pending')
+    Invitation.where(user_id: id, status: 'pending')
   end
 end
