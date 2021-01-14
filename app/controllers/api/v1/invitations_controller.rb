@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Api
   module V1
     class InvitationsController < ApplicationController
@@ -13,11 +11,6 @@ module Api
         end
       end
 
-      def index
-        user = User.find_by(id: params[:user_id])
-        invitations = user.get_pending_invitations
-        render json: InvitationSerializer.new(invitations)
-      end
       private
 
       def invitation_params
