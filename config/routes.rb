@@ -9,13 +9,12 @@ Rails.application.routes.draw do
       end
 
       # User crud
-      resources :users do
-        get :friends, to: 'users/friends#index'
-        get :games, to: 'users/games#index'
-        post :games, to: 'users/games#create'
-        patch :games, to: 'users/games#update'
-        delete :games, to: 'users/games#destroy'
-        get :game_nights, to: 'users/game_nights#index'
+      resources :users, only: [:create] do
+        scope module: :users do
+          resources :friends, only: [:index, :destroy]
+          resources :games, only: [:index, :create, :destroy]
+          resources :game_nights, only: [:index]
+        end
       end
 
       # Games crud
