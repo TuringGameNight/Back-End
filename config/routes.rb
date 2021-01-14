@@ -11,15 +11,11 @@ Rails.application.routes.draw do
       # User crud
       resources :users, only: [:create] do
         scope module: :users do
-          resources :friends, only: [:index, :destroy]
+          resources :friends, only: [:index, :create, :update, :destroy]
           resources :games, only: [:index, :create, :destroy]
           resources :game_nights, only: [:index]
         end
       end
-
-      post '/users/:id/friends', to: 'users/friends#create'
-      patch '/users/:id/friends/:id', to: 'users/friends#update'
-
 
       # Games crud
       resources :games, only: [:create]
