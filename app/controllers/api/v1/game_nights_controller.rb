@@ -5,7 +5,6 @@ module Api
     class GameNightsController < ApplicationController
       def show
         game_night = GameNight.find(params[:id])
-
         render json: GameNightSerializer.new(game_night)
       end
 

@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2021_01_13_211655) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "bud_id"
+    t.string "status", default: "pending"
     t.index ["bud_id"], name: "index_friends_on_bud_id"
     t.index ["user_id"], name: "index_friends_on_user_id"
   end
