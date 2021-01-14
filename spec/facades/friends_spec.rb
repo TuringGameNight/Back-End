@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe FriendsFacade do
   describe 'class methods' do
-    it 'returns ' do
+    it '.create_friendship' do
       user = create(:user)
       friend = create(:user)
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FriendsFacade
   def self.create_friendship(user_id, friend_email)
     user = User.find(user_id)
@@ -15,8 +17,6 @@ class FriendsFacade
     find_and_accept_friend(user_id, bud_id)
     find_and_serialize_user(user_id)
   end
-
-private
 
   def self.find_and_serialize_user(user_id)
     user = User.find(user_id)
