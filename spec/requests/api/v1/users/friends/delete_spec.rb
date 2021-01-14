@@ -29,6 +29,5 @@ RSpec.describe 'DELETE User/Friends', type: :request do
 
     expect(json_body[:message]).to eq('unsuccessful')
     expect(json_body[:error]).to eq("Couldn't find Friend with 'id'=80000")
-
   end
 end
