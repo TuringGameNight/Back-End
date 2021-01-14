@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         post :games, to: 'users/games#create'
         delete :games, to: 'users/games#destroy'
         get :game_nights, to: 'users/game_nights#index'
+        get :invitations, to: 'users/invitations#index'
       end
 
       # Games crud
