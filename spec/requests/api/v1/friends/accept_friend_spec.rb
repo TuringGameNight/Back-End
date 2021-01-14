@@ -16,13 +16,18 @@ describe 'Friend request accept', type: :request do
 
     friends_data = JSON.parse(response.body, symbolize_names: true)
     friend_id = friends_data[:data][:attributes][:pending_friends][0][:id]
+
     pending_friend = {
       user_id: user_1.id,
       friend_id: user_2.id,
       status: 'accepted'
     }
 
-    patch "/api/v1/users/#{user_1.id}/friends/#{friend_id}", headers: headers, params: JSON.generate(pending_friend)
+    patch "/api/v1/users/#{user_1.id}/friends/#{friend_id}", params: {
+      user_id: user_1.id,
+      friend_id: user_2.id,
+      status: 'accepted'
+    }
 
     friends_data = JSON.parse(response.body, symbolize_names: true)
 
