@@ -28,7 +28,7 @@ class Api::V1::GameNightsController < ApplicationController
 
   def update
     game_night = GameNight.find(params[:id])
-    
+
     if game_night.update(update_params)
       render json: { message: 'success' }
     else

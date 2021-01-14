@@ -10,7 +10,7 @@ module Api
         end
 
         def destroy
-          friendship = Friend.find(params[:id])  
+          friendship = Friend.find(params[:id])
           friendship.delete
 
           render json: { message: 'success' }

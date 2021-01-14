@@ -121,14 +121,6 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
     end
   end
 
-  describe 'PATCH /users/{user_id}/games' do
-    context 'when the game exists' do
-      it 'can update the game' do
-
-      end
-    end
-  end
-
   describe 'DELETE /users/{user_id}/games' do
     context 'when the game exists' do
       it 'can delete a game from user shelf' do
@@ -151,7 +143,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
       it 'returns unsuccessful flash from json error' do
         user = create(:user)
 
-        delete "/api/v1/users/#{user.id}/games/#{80_000}"
+        delete "/api/v1/users/#{user.id}/games/80000"
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 

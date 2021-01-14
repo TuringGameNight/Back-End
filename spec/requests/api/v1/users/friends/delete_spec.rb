@@ -23,7 +23,7 @@ RSpec.describe 'DELETE User/Friends', type: :request do
   it 'returns json error when unsuccessful' do
     user1 = create(:user)
 
-    delete "/api/v1/users/#{user1.id}/friends/#{80_000}"
+    delete "/api/v1/users/#{user1.id}/friends/80000"
 
     json_body = JSON.parse(response.body, symbolize_names: true)
 
