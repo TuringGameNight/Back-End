@@ -5,12 +5,10 @@ describe 'Friends endpoint', type: :request do
     user_1 = create(:user)
     user_2 = create(:user)
 
-    request = {
+    post "/api/v1/users/#{user_1.id}/friends", params: {
       user_id: user_1.id,
       friend_email: user_2.email
     }
-
-    post api_v1_user_friends_path(request)
 
     friends = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -24,12 +22,10 @@ describe 'Friends endpoint', type: :request do
     user_1 = create(:user)
     friend_email = 'test@example.com'
 
-    request = {
+    post "/api/v1/users/#{user_1.id}/friends", params: {
       user_id: user_1.id,
       friend_email: friend_email
     }
-
-    post api_v1_user_friends_path(request)
 
     results = JSON.parse(response.body, symbolize_names: true)
 
@@ -39,12 +35,10 @@ describe 'Friends endpoint', type: :request do
   it 'does not create a friendship if the user tries to friend themselves' do
     user_1 = create(:user)
 
-    request = {
+    post "/api/v1/users/#{user_1.id}/friends", params: {
       user_id: user_1.id,
       friend_email: user_1.email
     }
-
-    post api_v1_user_friends_path(request)
 
     results = JSON.parse(response.body, symbolize_names: true)
 
