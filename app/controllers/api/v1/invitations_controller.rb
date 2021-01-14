@@ -13,6 +13,11 @@ module Api
         end
       end
 
+      def index
+        user = User.find_by(id: params[:user_id])
+        invitations = user.get_pending_invitations
+        render json: InvitationsSerializer.new(invitations)
+      end
       private
 
       def invitation_params
