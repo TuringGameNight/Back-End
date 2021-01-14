@@ -138,7 +138,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
 
         expect(UserGame.all.first).to eq(user_game)
 
-        delete api_v1_user_games_path(user.id), params: { game_id: game.id }
+        delete "/api/v1/users/#{user.id}/games/#{game.id}"
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
@@ -151,7 +151,7 @@ RSpec.describe 'Api/V1/Users/Games/Request', type: :request do
       it 'returns unsuccessful flash from json error' do
         user = create(:user)
 
-        delete api_v1_user_games_path(user.id)
+        delete "/api/v1/users/#{user.id}/games/#{80_000}"
 
         json_body = JSON.parse(response.body, symbolize_names: true)
 
