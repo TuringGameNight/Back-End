@@ -3,7 +3,7 @@ class FriendsFacade
     user = User.find(user_id)
     friend = User.find_by(email: friend_email)
 
-    if friend != nil && user.id != friend.id
+    if !friend.nil? && user.id != friend.id
       Friend.create(user_id: user.id, bud_id: friend.id)
       FriendsSerializer.new(user)
     else

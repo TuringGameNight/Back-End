@@ -31,14 +31,16 @@ class User < ApplicationRecord
   end
 
   def get_accepted_buds
-    bud_ids = User.joins(:friends).where("friends.user_id": self.id, "friends.status": "accepted").pluck("friends.bud_id")
+    bud_ids = User.joins(:friends).where("friends.user_id": id,
+                                         "friends.status": 'accepted').pluck('friends.bud_id')
     bud_ids.map do |bud_id|
       bud = User.find(bud_id)
     end
   end
 
   def get_pending_buds
-    bud_ids = User.joins(:friends).where("friends.user_id": self.id, "friends.status": "pending").pluck("friends.bud_id")
+    bud_ids = User.joins(:friends).where("friends.user_id": id,
+                                         "friends.status": 'pending').pluck('friends.bud_id')
     bud_ids.map do |bud_id|
       bud = User.find(bud_id)
     end
