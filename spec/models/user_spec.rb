@@ -8,8 +8,8 @@ describe User, type: :model do
     it { is_expected.to validate_presence_of :email }
     it { is_expected.to validate_presence_of :name }
     it { is_expected.to validate_presence_of :google_id }
-    it { is_expected.to validate_presence_of :google_token }
     it { is_expected.to validate_presence_of :auth_token }
+    it { is_expected.to validate_presence_of :token_expiration }
   end
 
   describe 'relationships' do
