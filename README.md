@@ -30,19 +30,17 @@ This app is built on Rails 5.2 with support from:
 
 To install and run this application locally:
 
-1. To setup the repository locally, from your command line:
+1. To setup the repository locally, clone it down and run the following commands:
 ```
-$git clone git@github.com:turinggamenight/Back-End.git
-$bundle
-$rails db:{create,migrate,seed}
+$ bundle install
+$ rails db:{create,migrate,seed}
 ```
-2. To run it on your local server type 'rails s' into the command line:
-```
-$rails s
-```
-3. Open your web browser and navigate to http://localhost:3000/
 
-4. Enter any of the endpoints listed to view the data available!
+2. Next, startup your server with the `$ rails server` command
+
+3. You should now be able to open your web browser, navigate to `http://localhost:3000/` and see the Rails default information page.
+
+4. From here, you are free to hit any of the api endpoints listed below. The URL should be prefixed with your localhost port like this `GET http://localhost:3000/api/v1/users/{user_id}/friends`
 
 ## Endpoints:
 
@@ -111,6 +109,19 @@ Default response
 Add a game to a users shelf.
 
 POST /api/v1/users/{user_id}/games
+```
+```json
+Raw JSON request body
+
+{
+    "name": "Best Game Ever",
+    "description": "Yes, it is the best game",
+    "duration": 90
+    "game_type": "Board/Strategy", // optional
+    "image": "www.hostingsite.com/yourimage", // optional
+    "num_players": "4-6", // optional
+    "age_range": "12+" // optional
+}
 ```
 
 ```
@@ -242,12 +253,12 @@ Default response
 ## Contributors
 
 - Austin Aspaas
-- Shaun James [GitHub](https://github.com/ShaunDaneJames) & [LinkedIn](https://www.linkedin.com/in/shaun-james-2707a61bb/)
-- Eduardo Parra [GitHub](https://github.com/helloeduardo) & [LinkedIn](https://www.linkedin.com/in/eduardo--parra/)
-- Garrett Cottrell
+- Shaun James [GitHub](https://github.com/ShaunDaneJames) [LinkedIn](https://www.linkedin.com/in/shaun-james-2707a61bb/)
+- Eduardo Parra [GitHub](https://github.com/helloeduardo) [LinkedIn](https://www.linkedin.com/in/eduardo--parra/)
+- Garrett Cottrell [GitHub](https://github.com/GarrettCottrell) [LinkedIn](https://www.linkedin.com/in/garrett-cottrell-52850834/)
 - Grant Dempsey
-- Greg Mitchell
-- Kate Tester
+- Greg Mitchell [GitHub](https://github.com/GregJMitchell) [LinkedIn](https://www.linkedin.com/in/gregory-j-mitchell/)
+- Kate Tester [GitHub](https://github.com/katemorris) [LinkedIn](https://www.linkedin.com/in/katemorris/)
 - Philip DeFraties
-- Shaunda Cunningham
-- Taylor Phillips [GitHub](https://github.com/taphill) & [LinkedIn](https://www.linkedin.com/in/taphill/)
+- Shaunda Cunningham [GitHub](https://github.com/smcunning) [LinkedIn](https://www.linkedin.com/in/shaunda-cunningham/)
+- Taylor Phillips [GitHub](https://github.com/taphill) [LinkedIn](https://www.linkedin.com/in/taphill/)
