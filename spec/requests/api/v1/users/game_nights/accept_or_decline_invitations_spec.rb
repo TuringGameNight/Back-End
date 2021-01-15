@@ -30,12 +30,13 @@ RSpec.describe 'Invitations' do
     invite_data = {
       status: 'accepted',
       user_id: user2.id,
-      game_night_id: game_night.id
+      game_night_id: game_night.id,
+      id: invitation.id
     }
 
     expect(game_night.confirmed_attendees).to eq([user1])
 
-    patch "/api/v1/invitations/#{invitation.id}", params: invite_data
+    patch "/api/v1/invitations/#{invitation.id}", params: invite_data, as: :json
 
     json = JSON.parse(response.body, symbolize_names: true)
 
@@ -75,12 +76,13 @@ RSpec.describe 'Invitations' do
     invite_data = {
       status: 'declined',
       user_id: user2.id,
-      game_night_id: game_night.id
+      game_night_id: game_night.id,
+      id: invitation.id
     }
 
     expect(game_night.confirmed_attendees).to eq([user1])
 
-    patch "/api/v1/invitations/#{invitation.id}", params: invite_data
+    patch "/api/v1/invitations/#{invitation.id}", params: invite_data, as: :json
 
     json = JSON.parse(response.body, symbolize_names: true)
 
@@ -119,12 +121,13 @@ RSpec.describe 'Invitations' do
     invite_data = {
       status: 'pending',
       user_id: user2.id,
-      game_night_id: game_night.id
+      game_night_id: game_night.id,
+      id: invitation.id
     }
 
     expect(game_night.confirmed_attendees).to eq([user1])
 
-    patch "/api/v1/invitations/#{invitation.id}", params: invite_data
+    patch "/api/v1/invitations/#{invitation.id}", params: invite_data, as: :json
 
     json = JSON.parse(response.body, symbolize_names: true)
     expect(json[:message]).to eq('unsuccessful')
