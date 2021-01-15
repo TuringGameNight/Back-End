@@ -10,7 +10,7 @@ class Invitation < ApplicationRecord
 
   def self.find_update(invitation_params)
     invite = Invitation.find_by(id: invitation_params[:id])
-    invite.status = "accepted"
+    invite.status = invitation_params[:status]
     invite.save
   end
 end
