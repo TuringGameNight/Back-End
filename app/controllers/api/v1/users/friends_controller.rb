@@ -14,7 +14,8 @@ module Api
         end
 
         def create
-          render json: FriendsFacade.create_friendship(params[:user_id], params[:friend_email])
+          friendship_params = JSON.parse(request.body.read, symbolize_names: true)
+          render json: FriendsFacade.create_friendship(friendship_params[:user_id], friendship_params[:friend_email])
         end
 
         def destroy
