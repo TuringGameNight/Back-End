@@ -77,6 +77,32 @@ Default response
 }
 ```
 
+```
+Accept a friend request.
+
+PATCH /api/v1/users/{user_id}/friends/{friends_user_id}
+```
+
+```
+Send a friend request.
+
+POST /api/v1/users/{user_id}/friends
+```
+```json
+Raw JSON request body. The email will need to belong to an existing user.
+
+{
+    "friend_email": "joe@example.com"
+}
+```
+
+```
+Delete a game from a users shelf.
+
+DELETE /api/v1/users/{user_id}/friends/{friends_user_id}
+```
+
+
 #### Games
 ```
 List all games for a specific user.
@@ -105,12 +131,12 @@ Default response
 }
 ```
 
-```json
+```
 Add a game to a users shelf.
 
 POST /api/v1/users/{user_id}/games
-
-
+```
+```json
 Raw JSON request body
 
 {
@@ -127,7 +153,7 @@ Raw JSON request body
 ```
 Delete a game from a users shelf.
 
-DELETE /api/v1/users/{user_id}/games
+DELETE /api/v1/users/{user_id}/games/{game_id}
 ```
 
 #### Game Nights
@@ -137,6 +163,8 @@ List all games nights a user is attending
 GET /api/v1/users/{user_id}/game_nights
 ```
 ```json
+Default response
+
 {
     "data": [
         {
@@ -146,6 +174,36 @@ GET /api/v1/users/{user_id}/game_nights
                 "name": "Test Game Night",
                 "date": "09-21-2021",
                 "number_of_games": 2
+            }
+        }
+    ]
+}
+```
+
+#### Invitations
+```
+List all game night invitations for a user.
+
+GET /api/v1/users/{user_id}/invitations
+```
+```json
+Default response
+
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "invitation",
+            "attributes": {
+                "id": 1,
+                "game_night": {
+                    "game_night_id": 1,
+                    "name": "Test Game Night",
+                    "date": "09-21-2021",
+                    "number_of_games": 2,
+                    "host": "Kate",
+                    "host_id": 1
+                }
             }
         }
     ]
@@ -248,11 +306,34 @@ Default response
         }
     }
 }
+
 ```
+
+```
+Update a game night.
+
+PATCH /api/v1/game_nights/{game_night_id}
+
+```
+```json
+Raw JSON request body
+
+{
+    "name": "Test Game Night", // optional
+    "date": "01-21-2021" // optional
+}
+```
+
+```
+Delete a game night.
+
+DELETE /api/v1/game_nights/{game_night_id}
+```
+
 
 ## Contributors
 
-- Austin Aspaas
+- Austin Aspaas [GitHub](https://github.com/evilaspaas1) [LinkedIn](https://www.linkedin.com/in/austin-aspaas-4626611bb/)
 - Shaun James [GitHub](https://github.com/ShaunDaneJames) [LinkedIn](https://www.linkedin.com/in/shaun-james-2707a61bb/)
 - Eduardo Parra [GitHub](https://github.com/helloeduardo) [LinkedIn](https://www.linkedin.com/in/eduardo--parra/)
 - Garrett Cottrell [GitHub](https://github.com/GarrettCottrell) [LinkedIn](https://www.linkedin.com/in/garrett-cottrell-52850834/)
