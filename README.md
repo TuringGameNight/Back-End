@@ -105,18 +105,18 @@ Default response
 }
 ```
 
-```
+```json
 Add a game to a users shelf.
 
 POST /api/v1/users/{user_id}/games
-```
-```json
+
+
 Raw JSON request body
 
 {
     "name": "Best Game Ever",
     "description": "Yes, it is the best game",
-    "duration": 90
+    "duration": 90,
     "game_type": "Board/Strategy", // optional
     "image": "www.hostingsite.com/yourimage", // optional
     "num_players": "4-6", // optional
