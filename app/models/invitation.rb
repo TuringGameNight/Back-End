@@ -7,4 +7,10 @@ class Invitation < ApplicationRecord
   validates :user_id, presence: true
   validates :game_night_id, presence: true
   validates :status, presence: true
+
+  def self.find_update(invitation_params)
+    invite = Invitation.find_by(id: invitation_params[:id])
+    invite.status = "accepted"
+    invite.save
+  end
 end
