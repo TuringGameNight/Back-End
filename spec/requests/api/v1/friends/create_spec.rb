@@ -8,14 +8,12 @@ describe 'Friends endpoint', type: :request do
     post "/api/v1/users/#{user_1.id}/friends", params: {
       user_id: user_1.id,
       friend_email: user_2.email
-    }
+    }, as: :json
 
-    friends = JSON.parse(response.body, symbolize_names: true)[:data]
+    friend_response = JSON.parse(response.body, symbolize_names: true)
 
     expect(response).to be_successful
-    expect(friends[:attributes][:pending_friends][0][:name]).to eq(user_2.name)
-    expect(friends[:attributes][:pending_friends][0][:id]).to eq(user_2.id)
-    expect(friends[:attributes][:pending_friends][0][:email]).to eq(user_2.email)
+    expect(friend_response[:message]).to eq('successful')
   end
 
   it 'does not create a friendship if that user is not in the database' do
@@ -25,7 +23,7 @@ describe 'Friends endpoint', type: :request do
     post "/api/v1/users/#{user_1.id}/friends", params: {
       user_id: user_1.id,
       friend_email: friend_email
-    }
+    }, as: :json
 
     results = JSON.parse(response.body, symbolize_names: true)
 
@@ -38,7 +36,7 @@ describe 'Friends endpoint', type: :request do
     post "/api/v1/users/#{user_1.id}/friends", params: {
       user_id: user_1.id,
       friend_email: user_1.email
-    }
+    }, as: :json
 
     results = JSON.parse(response.body, symbolize_names: true)
 
