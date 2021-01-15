@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.com/TuringGameNight/Back-End.svg?branch=main)](https://travis-ci.com/TuringGameNight/Back-End)
 
+![Game-Night-Logo](https://user-images.githubusercontent.com/56360157/104666308-cd9f9880-5690-11eb-82bf-8a23213a9a64.jpg)
+
 ## Table of Contents
 
   - [What it does](#what-it-does)
@@ -9,6 +11,7 @@
   - [How to Install](#how-to-install)
   - [Testing](#testing)
   - [Endpoints](#endpoints)
+  - [Roadmap](#roadmap)
   - [Contributors](#contributors)
   
 ## What It Does
@@ -249,6 +252,10 @@ Default response
     }
 }
 ```
+
+## Roadmap
+
+See the [open issues](https://github.com/TuringGameNight/Back-End/issues) for a list of proposed features, known issues, and project extensions.
 
 ## Contributors
 
