@@ -6,7 +6,8 @@ class FriendsFacade
     friend = User.find_by(email: friend_email)
 
     if !friend.nil? && user.id != friend.id
-      Friend.create(user_id: user.id, bud_id: friend.id)
+      Friend.create(user_id: friend.id, bud_id: user.id, status: 'pending')
+      Friend.create(user_id: user.id, bud_id: friend.id, status: 'sent')
       FriendsSerializer.new(user)
     else
       { message: 'unsuccessful' }
@@ -25,7 +26,10 @@ class FriendsFacade
 
   def self.find_and_accept_friend(user_id, bud_id)
     friend = Friend.find_by(user_id: user_id, bud_id: bud_id)
+    reverse_friend = Friend.find_by(user_id: bud_id, bud_id: user_id)
     friend.status = 'accepted'
+    reverse_friend.status = 'accepted'
     friend.save
+    reverse_friend.save
   end
 end
