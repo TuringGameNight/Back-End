@@ -271,20 +271,8 @@ Default response
         "attributes": {
             "name": "Test Game Night",
             "date": "09-21-2021",
-            "number_of_games": 2,
+            "number_of_games": 1,
             "games": [
-                {
-                    "id": 1,
-                    "name": "Chess",
-                    "game_type": "Board/Strategy",
-                    "description": "Timeless",
-                    "duration": 15,
-                    "image": "Knight",
-                    "created_at": "2021-01-13T00:02:09.366Z",
-                    "updated_at": "2021-01-13T00:02:09.366Z",
-                    "num_players": "2",
-                    "age_range": "6"
-                },
                 {
                     "id": 2,
                     "name": "Pandemic",
@@ -292,24 +280,29 @@ Default response
                     "description": "It is our life now",
                     "duration": 95,
                     "image": "IMAGE",
-                    "created_at": "2021-01-13T00:02:09.369Z",
-                    "updated_at": "2021-01-13T00:02:09.369Z",
+                    "created_at": "2021-01-15T15:28:49.656Z",
+                    "updated_at": "2021-01-15T15:28:49.656Z",
                     "num_players": "4",
                     "age_range": "15"
                 }
             ],
-            "attendees": [
+            "confirmed_attendees": [
                 {
+                    "id": 1,
+                    "name": "Kate",
+                    "email": "Kate@example.com"
+                }
+            ],
+            "pending_attendees": [
+                {
+                    "id": 2,
                     "name": "Austin",
                     "email": "Austin@example.com"
                 },
                 {
+                    "id": 3,
                     "name": "Phil",
                     "email": "Phil@example.com"
-                },
-                {
-                    "name": "Kate",
-                    "email": "Kate@example.com"
                 }
             ]
         }
