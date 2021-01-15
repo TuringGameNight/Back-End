@@ -47,6 +47,8 @@ $ rails db:{create,migrate,seed}
 
 4. From here, you are free to hit any of the api endpoints listed below. The URL should be prefixed with your localhost port like this `GET http://localhost:3000/api/v1/users/{user_id}/friends`
 
+5. To run our test suite, run `bundle exec rspec` in your terminal. **As of 1/15/2021, this app is a 99.4% test coverage.**
+
 ## Schema
 
 <img src="https://i.ibb.co/SvHD61q/game-night-schema.png" alt="game-night-schema">
