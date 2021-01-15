@@ -20,7 +20,6 @@ module Api
         def destroy
           friendship = Friend.find_by(user_id: params[:user_id], bud_id: params[:id])
           friendship.delete
-
           render json: { message: 'success' }
         end
       end

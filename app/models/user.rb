@@ -25,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def get_game_nights
-    attendee_gns = GameNight.joins(:invitations).where(invitations: { user_id: id })
+    attendee_gns = GameNight.joins(:invitations).where(invitations: { user_id: id, status: "accepted" })
     attendee_gns + game_nights
   end
 

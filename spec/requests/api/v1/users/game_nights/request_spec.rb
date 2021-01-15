@@ -49,8 +49,8 @@ RSpec.describe 'api/v1/users/game_nights/request', type: :request do
         json_body = JSON.parse(response.body, symbolize_names: true)
 
         expect(response.status).to eq(200)
-        expect(json_body[:data].count).to eq(2)
-        user_game_nights_response_checker(json_body, game_night_2)
+        expect(json_body[:data].count).to eq(1)
+        user_game_nights_response_checker(json_body, game_night)
       end
     end
 
