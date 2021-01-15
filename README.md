@@ -11,7 +11,7 @@ Plan your next game night with GameNight! With this app you can add games to you
   - [What it does](#what-it-does)
   - [Technology](#technology)
   - [How to Install](#how-to-install)
-  - [Testing](#testing)
+  - [Schema](#schema)
   - [Endpoints](#endpoints)
   - [Roadmap](#roadmap)
   - [Contributors](#contributors)
@@ -46,6 +46,10 @@ $ rails db:{create,migrate,seed}
 3. You should now be able to open your web browser, navigate to `http://localhost:3000/` and see the Rails default information page.
 
 4. From here, you are free to hit any of the api endpoints listed below. The URL should be prefixed with your localhost port like this `GET http://localhost:3000/api/v1/users/{user_id}/friends`
+
+## Schema
+
+<img src="https://i.ibb.co/SvHD61q/game-night-schema.png" alt="game-night-schema">
 
 ## Endpoints:
 
