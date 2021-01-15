@@ -9,8 +9,8 @@ describe FriendsFacade do
       friend = create(:user)
 
       response = FriendsFacade.create_friendship(user.id, friend.email)
-
-      expect(response).to be_an_instance_of(FriendsSerializer)
+      expect(response).to be_a(Hash)
+      expect(response).to eq(message: 'successful')
     end
   end
 end
