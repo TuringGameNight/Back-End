@@ -10,7 +10,7 @@ module Api
         end
 
         def update
-          render json: FriendsFacade.accept_friendship(params[:user_id], params[:friend_id])
+          render json: FriendsFacade.accept_friendship(params[:user_id], params[:id])
         end
 
         def create
@@ -18,9 +18,8 @@ module Api
         end
 
         def destroy
-          friendship = Friend.find(params[:id])
+          friendship = Friend.find_by(user_id: params[:user_id], bud_id: params[:id])
           friendship.delete
-
           render json: { message: 'success' }
         end
       end
