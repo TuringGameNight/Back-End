@@ -10,7 +10,8 @@ module Api
         end
 
         def update
-          render json: FriendsFacade.accept_friendship(params[:user_id], params[:id])
+          friendship_params = JSON.parse(request.body.read, symbolize_names: true)
+          render json: FriendsFacade.accept_friendship(friendship_params[:user_id], friendship_params[:friend_id])
         end
 
         def create
